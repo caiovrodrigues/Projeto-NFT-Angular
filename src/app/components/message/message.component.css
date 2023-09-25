@@ -1,0 +1,11 @@
+.message{
+    position: absolute;
+    top: 50%;
+    width: 500px;
+}
+h1{
+    font-size: 5rem;
+}
+p{
+    font-size: 3rem;
+}

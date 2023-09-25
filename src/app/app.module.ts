@@ -8,19 +8,25 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { CompartilharComponent } from './components/pages/compartilhar/compartilhar.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NftComponent } from './components/pages/nft/nft.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    CompartilharComponent
+    CompartilharComponent,
+    NftComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
