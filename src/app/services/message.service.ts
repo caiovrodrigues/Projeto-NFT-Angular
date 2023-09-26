@@ -10,6 +10,7 @@ export class MessageService {
 
   add(msg: string){
     this.message = msg;
+    console.log(this.message);
   }
 
 }

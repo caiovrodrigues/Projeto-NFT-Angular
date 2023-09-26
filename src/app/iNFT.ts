@@ -4,7 +4,7 @@ export interface Nft{
   description: string;
   price: number;
   qtd: number;
-  comment: [
+  comment?: [
     {
       usuario: string,
       comentario: string

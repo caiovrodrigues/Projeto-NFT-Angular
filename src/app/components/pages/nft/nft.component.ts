@@ -29,9 +29,9 @@ export class NftComponent {
     });
   }
 
-  deleteNft(nftt: Nft){
-    this.nftService.delete(nftt).subscribe();
+  deleteNft(nft: Nft){
     this.messageService.add("Nft excluído com sucesso!");
+    this.nftService.delete(nft).subscribe();
   }
 }
 

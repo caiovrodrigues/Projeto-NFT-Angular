@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, NgForm } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { Nft } from 'src/app/iNFT';
+import { NftService } from 'src/app/services/nft.service';
+
 
 @Component({
   selector: 'app-compartilhar',
@@ -8,30 +9,13 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./compartilhar.component.css']
 })
 export class CompartilharComponent {
-  cardName: string = '';
-  cardPrice: number = 0;
-  cardQtd: number = 0;
+  titleTopo = 'Crie seu NFT'
+  btnText = 'Enviar';
 
-  nftForm!: FormGroup;
+  constructor(private nftService: NftService){}
 
-  ngOnInit(){
-    this.nftForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      description: new FormControl(''),
-      price: new FormControl(''),
-      qtd: new FormControl(''),
-    })
-  }
-
-  get name(){
-    return this.nftForm.get("name")!;
-  }
-
-  submit(){
-    if(this.nftForm.invalid){
-      return;
-    }
-    console.log('Deu certo');
-    console.log(this.nftForm.value);
+  onSubmit(nft: Nft){
+    this.nftService.post(nft).subscribe();
+    console.log(nft);
   }
 }

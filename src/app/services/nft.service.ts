@@ -20,6 +20,14 @@ export class NftService {
     return this.http.get<Nft>(`${this.apiUrl}/nft/${id}`);
   }
 
+  post(nft: Nft): Observable<Nft>{
+    return this.http.post<Nft>(`${this.apiUrl}/nft`, nft);
+  }
+
+  put(nft: Nft, id: number): Observable<Nft>{
+    return this.http.put<Nft>(`${this.apiUrl}/nft/atualizar/${id}`, nft);
+  }
+
   delete(nft: Nft){
     return this.http.delete(`${this.apiUrl}/nft`, {body: nft});
   }

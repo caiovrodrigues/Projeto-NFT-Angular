@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NftComponent } from './components/pages/nft/nft.component';
 import { MessageComponent } from './components/message/message.component';
+import { NftFormComponent } from './components/nft-form/nft-form.component';
+import { NftEditComponent } from './components/pages/nft-edit/nft-edit.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MessageComponent } from './components/message/message.component';
     HomeComponent,
     CompartilharComponent,
     NftComponent,
-    MessageComponent
+    MessageComponent,
+    NftFormComponent,
+    NftEditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="title-form"><h1>{{titleTopo}}</h1></div>
+    <div class="form-container">
+        <form (ngSubmit)="submit()" [formGroup]="nftForm" #formDir="ngForm">
+            <div class="group">
+                <label for="name">Nome:</label>
+                <input type="text" formControlName="name" placeholder="Nome do seu NFT">
+                <div *ngIf="name.invalid && formDir.submitted" class="error">
+                  <p>O nome é obrigatório</p>
+                </div>
+            </div>
+        
+            <div class="group">
+                <label for="description">Descrição:</label>
+                <textarea rows="4" formControlName="description" placeholder="Fale um pouco sobre ele..."></textarea>
+            </div>
+        
+            <div class="group">
+                <label for="name">Preço:</label>
+                <input type="number" formControlName="price" placeholder="Dê um preço">
+            </div>
+        
+            <div class="group">
+                <label for="qtd">Quantidade disponível:</label>
+                <input type="number" formControlName="qtd" placeholder="Quantidade disponível">
+            </div>
+            <div class="group">
+              <label>Escolha a melhor foto:</label>
+              <input type="file" id="inputFile" (change)="fileSelected()">
+            </div>
+        
+            <div class="group">
+              <button>{{btnText}}</button>
+            </div>
+        </form>
+        
+        <div class="card-model">
+            <div class="card">
+                <div class="img-area"><img src="/assets/nft-1.jpg" id="imgModel"></div>
+                <h1 class="title">{{nftForm.value.name}}</h1>
+                <p class="price">Valor: {{nftForm.value.price | currency: 'BRL'}}</p>
+                <p class="qtd">Qtd: {{nftForm.value.qtd}} disponíveis</p>
+            </div>
+        </div>
+    </div>
+</div>
