@@ -123,3 +123,36 @@ button{
     height: 100%;
     color: white;
 }
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    padding-bottom: 1rem;
+}
+
+.c-group{
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    font-size: 1.7rem;
+    color: #2d9999;
+}
+
+input, textarea{
+    font-size: 1.6rem;
+    padding: .5rem;
+    outline: 0;
+}
+
+.c-button-area{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    cursor: pointer;
+}
+.error{
+    color: red;
+}

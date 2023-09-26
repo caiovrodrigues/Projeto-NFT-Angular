@@ -28,7 +28,27 @@
         </div>
 
         <div>
-            AQUI VAI UM FORMULÁRIO PARA A PESSOA COMENTAR
+            <form (ngSubmit)="submitComment()" [formGroup]="commentForm" #formDir="ngForm">
+                <div class="c-group">
+                    <label for="name">Nome: </label>
+                    <input type="text" formControlName="usuario" placeholder="Digite seu nome">
+                    <div *ngIf="usuario!.invalid && formDir.submitted">
+                        <p class="error">Esse campo é obrigatório</p>
+                    </div>
+
+                </div>
+
+                <div class="c-group">
+                    <label for="mensagem">Comentário: </label>
+                    <textarea rows="4" formControlName="comentario" placeholder="Deixe seu comentário"></textarea>
+                    <div *ngIf="comentario!.invalid && formDir.submitted">
+                        <p class="error">Esse campo é obrigatório</p>
+                    </div>
+                </div>
+                <div class="c-button-area">
+                    <button>Comentar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
