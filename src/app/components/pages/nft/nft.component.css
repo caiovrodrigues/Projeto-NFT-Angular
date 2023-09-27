@@ -97,6 +97,7 @@ button{
 .comment{
     display: flex;
     gap: 1rem;
+    margin: 0 0 2rem 0;
 }
 .comment-img{
     display: flex;
@@ -129,14 +130,18 @@ form{
     flex-direction: column;
     gap: .8rem;
     padding-bottom: 1rem;
+    margin-top: 2.2rem;
 }
-
+form h1{
+    color: #2d9999;
+    font-weight: normal;
+}
 .c-group{
     display: flex;
     flex-direction: column;
     gap: .2rem;
     font-size: 1.7rem;
-    color: #2d9999;
+    color: rgb(190, 190, 190);
 }
 
 input, textarea{
@@ -155,4 +160,10 @@ button{
 }
 .error{
     color: red;
+}
+
+.description-area{
+    margin: 1rem 0;
+    font-size: 2rem;
+    color: rgb(190, 190, 190);
 }

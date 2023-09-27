@@ -13,15 +13,17 @@
         <button (click)="deleteNft(nft)">Excluir</button>
     </div>
 
+    <div class="description-area">{{nft.description}}</div>
+
     <div class="comentarios-area">
         <div class="comments-nft-area">
-            <h1>Comentários: (0)</h1>
+            <h1>Comentários: ({{nft.comment!.length}})</h1>
             <div class="comments-nft" *ngIf="nft.comment!.length; else noComments">
-                <div class="comment">
+                <div class="comment" *ngFor="let comment of nft.comment">
                     <div class="comment-img"><img src="assets/foto-perfil-comentario.jfif" alt=""></div>
                     <div class="comment-details">
-                        <div class="comment-name">NOME DA PESSOA</div>
-                        <div class="comment-text">COMENTÁRIO DELA</div>
+                        <div class="comment-name">{{comment.usuario}}</div>
+                        <div class="comment-text">{{comment.comentario}}</div>
                     </div>
                 </div>
             </div>
@@ -29,6 +31,7 @@
 
         <div>
             <form (ngSubmit)="submitComment()" [formGroup]="commentForm" #formDir="ngForm">
+                <h1>Deixe seu comentário</h1>
                 <div class="c-group">
                     <label for="name">Nome: </label>
                     <input type="text" formControlName="usuario" placeholder="Digite seu nome">

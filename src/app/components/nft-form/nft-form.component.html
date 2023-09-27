@@ -19,11 +19,17 @@
             <div class="group">
                 <label for="name">Preço:</label>
                 <input type="number" formControlName="price" placeholder="Dê um preço">
+                <div *ngIf="price.invalid && formDir.submitted" class="error">
+                    <p>Insira um preço</p>
+                </div>
             </div>
         
             <div class="group">
                 <label for="qtd">Quantidade disponível:</label>
                 <input type="number" formControlName="qtd" placeholder="Quantidade disponível">
+                <div *ngIf="qtd.invalid && formDir.submitted" class="error">
+                    <p>Insira uma quantidade</p>
+                </div>
             </div>
             <div class="group">
               <label>Escolha a melhor foto:</label>
@@ -38,7 +44,7 @@
         <div class="card-model">
             <div class="card">
                 <div class="img-area"><img src="/assets/nft-1.jpg" id="imgModel"></div>
-                <h1 class="title">{{nftForm.value.name}}</h1>
+                <h1 class="title">{{nftForm.value.name == '' ? 'Nome NFT' : nftForm.value.name}}</h1>
                 <p class="price">Valor: {{nftForm.value.price | currency: 'BRL'}}</p>
                 <p class="qtd">Qtd: {{nftForm.value.qtd}} disponíveis</p>
             </div>

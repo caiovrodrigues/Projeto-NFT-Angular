@@ -20,13 +20,21 @@ export class NftFormComponent {
     this.nftForm = new FormGroup({
       name: new FormControl(this.nftEdit ? this.nftEdit.name : '', [Validators.required]),
       description: new FormControl(this.nftEdit ? this.nftEdit.description : ''),
-      price: new FormControl((this.nftEdit?.price)),
-      qtd: new FormControl(this.nftEdit?.qtd),
+      price: new FormControl((this.nftEdit?.price), Validators.required),
+      qtd: new FormControl(this.nftEdit?.qtd, Validators.required),
     })
   }
 
   get name(){
     return this.nftForm.get("name")!;
+  }
+
+  get qtd(){
+    return this.nftForm.get("qtd")!;
+  }
+
+  get price(){
+    return this.nftForm.get("price")!;
   }
 
   submit(){

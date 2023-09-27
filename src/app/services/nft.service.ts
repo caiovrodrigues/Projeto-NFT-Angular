@@ -12,12 +12,12 @@ export class NftService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Nft[]>{
-    return this.http.get<Nft[]>(`${this.apiUrl}/nft`);
-  }
-
   getNft(id: number){
     return this.http.get<Nft>(`${this.apiUrl}/nft/${id}`);
+  }
+
+  getAll(): Observable<Nft[]>{
+    return this.http.get<Nft[]>(`${this.apiUrl}/nft`);
   }
 
   post(nft: Nft): Observable<Nft>{
