@@ -17,13 +17,12 @@ export class NftComponent {
   id: number | null = null;
   nft!: Nft;
   commentForm!: FormGroup;
-  comentariosNft: Comentario[] = [];
 
   constructor(private nftService: NftService, private comentarioService: ComentarioService, private route: ActivatedRoute, private messageService: MessageService){}
 
   ngOnInit(){
     this.id = Number(this.route.snapshot.paramMap.get("id"));
-    this.comentarioService.getCommentsNft(this.id).subscribe(comentario => this.comentariosNft = comentario);
+
     console.log(this.id);
 
     this.nftService.getNft(this.id).subscribe({
@@ -56,17 +55,8 @@ export class NftComponent {
 
   submitComment(){
     if(!this.commentForm.invalid){
-      this.comentariosNft.push(this.commentForm.value);
 
-      this.comentariosNft.map((comentario) => {
-        if(comentario.hasOwnProperty('id')){
-          delete comentario.id;
-        }
-      })
-
-      console.log(this.comentariosNft);
-
-      this.comentarioService.post(this.comentariosNft, this.id!).subscribe();
+      this.comentarioService.post(this.commentForm.value, this.id!).subscribe();
 
       this.messageService.add("Comentário adicionado com sucesso! ✔");
     }

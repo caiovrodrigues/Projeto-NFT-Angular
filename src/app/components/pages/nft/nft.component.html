@@ -6,6 +6,7 @@
         <h1 class="title">{{nft.name}}</h1>
         <p class="price">Valor: {{nft.price | currency: "BRL"}}</p>
         <p class="qtd">Qtd: {{nft.qtd}} disponíveis</p>
+        <p class="data" *ngIf="nft.date">Postado em: {{nft.date | date: 'd/MM/yy'}} às {{nft.date | date : 'h:mm a'}}</p>
     </div>
 
     <div class="actions-button">
@@ -22,7 +23,7 @@
                 <div class="comment" *ngFor="let comment of nft.comment">
                     <div class="comment-img"><img src="assets/foto-perfil-comentario.jfif" alt=""></div>
                     <div class="comment-details">
-                        <div class="comment-name">{{comment.usuario}}</div>
+                        <div class="comment-name">{{comment.usuario}} - <span class="time">{{comment.date | date: 'dd/MM/YYYY'}} às {{comment.date | date: 'mediumTime'}}</span></div>
                         <div class="comment-text">{{comment.comentario}}</div>
                     </div>
                 </div>

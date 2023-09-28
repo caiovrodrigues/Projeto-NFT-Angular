@@ -1,5 +1,6 @@
 export default interface Comentario{
-    id?:number,
+    id?: number,
+    date?: string,
     usuario: string,
     comentario: string
 }

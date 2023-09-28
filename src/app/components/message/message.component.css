@@ -5,7 +5,7 @@
     transform: translate(-50%);
     width: 500px;
     background-color: aliceblue;
-    z-index: 99;
+    z-index: 1000;
     padding: 2rem;
     box-shadow: 0 0 4px #2d9999;
     border: 1px solid #2d9999;

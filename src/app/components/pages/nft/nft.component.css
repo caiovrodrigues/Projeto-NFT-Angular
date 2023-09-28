@@ -92,6 +92,7 @@ button{
 .comments-nft-area h1{
     text-align: center;
     color: white;
+    margin-bottom: 1rem;
 }
 
 .comment{
@@ -167,4 +168,15 @@ button{
     font-size: 2rem;
     color: rgb(190, 190, 190);
     text-align: center;
+}
+
+.time{
+    color: #707070;
+}
+
+.data{
+    text-align: center;
+    margin-bottom: .5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
 }

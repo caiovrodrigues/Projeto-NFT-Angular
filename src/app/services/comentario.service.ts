@@ -16,7 +16,7 @@ export class ComentarioService {
     return this.http.post<Comentario>(`${this.apiUrl}/nft/${idNft}`, comentario);
   }
 
-  getCommentsNft(id: number): Observable<Comentario[]>{
-    return this.http.get<Comentario[]>(`${this.apiUrl}/nft/comments/${id}`);
+  getCommentsNft(id: number): Observable<Comentario>{
+    return this.http.get<Comentario>(`${this.apiUrl}/nft/comments/${id}`);
   }
 }

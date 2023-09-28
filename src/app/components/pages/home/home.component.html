@@ -6,5 +6,6 @@
         <p class="price">Valor: {{nft.price | currency: "BRL"}}</p>
         <p class="qtd">Qtd: {{nft.qtd}} disponíveis</p>
         <a routerLink="nft/{{nft.id}}">Ver mais</a>
+        <div class="notificao" *ngIf="nft.comment!.length > 0">{{nft.comment!.length}}</div>
     </div>
 </div>
