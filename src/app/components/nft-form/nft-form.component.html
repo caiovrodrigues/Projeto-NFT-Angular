@@ -10,12 +10,12 @@
                   <p>O nome é obrigatório</p>
                 </div>
             </div>
-        
+
             <div class="group">
                 <label for="description">Descrição:</label>
                 <textarea rows="4" formControlName="description" placeholder="Fale um pouco sobre ele..."></textarea>
             </div>
-        
+
             <div class="group">
                 <label for="name">Preço:</label>
                 <input type="number" formControlName="price" placeholder="Dê um preço">
@@ -23,7 +23,7 @@
                     <p>Insira um preço</p>
                 </div>
             </div>
-        
+
             <div class="group">
                 <label for="qtd">Quantidade disponível:</label>
                 <input type="number" formControlName="qtd" placeholder="Quantidade disponível">
@@ -35,15 +35,15 @@
               <label>Escolha a melhor foto:</label>
               <input type="file" id="inputFile" (change)="fileSelected()">
             </div>
-        
+
             <div class="group">
               <button>{{btnText}}</button>
             </div>
         </form>
-        
+
         <div class="card-model">
             <div class="card">
-                <div class="img-area"><img src="/assets/nft-1.jpg" id="imgModel"></div>
+                <div class="img-area"><img [src]="nftForm.value.img_url ? nftForm.value.img_url : 'https://www.promoview.com.br/uploads/images/unnamed%2819%29.png'" id="imgModel"></div>
                 <h1 class="title">{{nftForm.value.name == '' ? 'Nome NFT' : nftForm.value.name}}</h1>
                 <p class="price">Valor: {{nftForm.value.price | currency: 'BRL'}}</p>
                 <p class="qtd">Qtd: {{nftForm.value.qtd}} disponíveis</p>

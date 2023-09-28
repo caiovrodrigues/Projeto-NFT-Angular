@@ -22,6 +22,7 @@ export class NftFormComponent {
       description: new FormControl(this.nftEdit ? this.nftEdit.description : ''),
       price: new FormControl((this.nftEdit?.price), Validators.required),
       qtd: new FormControl(this.nftEdit?.qtd, Validators.required),
+      img_url: new FormControl(this.nftEdit?.img_url)
     })
   }
 
@@ -37,23 +38,31 @@ export class NftFormComponent {
     return this.nftForm.get("price")!;
   }
 
+  get img_url(){
+    return this.nftForm.get("img_url")!;
+  }
+
   submit(){
     if(this.nftForm.invalid){
       return;
     }
+    console.log(this.nftForm.value);
+
     this.onSubmit.emit(this.nftForm.value);
   }
 
   fileSelected(){
     const file = document.getElementById('inputFile') as HTMLInputElement;
-    
+
     const imgBlob = URL.createObjectURL(file.files![0]);
+
+    this.nftForm.patchValue({img_url: imgBlob});
 
     const imgModel = document.getElementById("imgModel") as HTMLImageElement;
     imgModel.src = imgBlob;
     console.log(imgBlob);
-    
+
     console.log('Carregou uma imagem');
-    
+
   }
 }

@@ -25,7 +25,7 @@ export class NftComponent {
     this.id = Number(this.route.snapshot.paramMap.get("id"));
     this.comentarioService.getCommentsNft(this.id).subscribe(comentario => this.comentariosNft = comentario);
     console.log(this.id);
-    
+
     this.nftService.getNft(this.id).subscribe({
       next: (nft) => {
         this.nft = nft;
@@ -58,16 +58,17 @@ export class NftComponent {
     if(!this.commentForm.invalid){
       this.comentariosNft.push(this.commentForm.value);
 
-      this.comentariosNft.map((comentario, index) => {
+      this.comentariosNft.map((comentario) => {
         if(comentario.hasOwnProperty('id')){
           delete comentario.id;
         }
       })
-      
+
       console.log(this.comentariosNft);
-      
+
       this.comentarioService.post(this.comentariosNft, this.id!).subscribe();
-      // console.log('Comentário enviado com sucesso');
+
+      this.messageService.add("Comentário adicionado com sucesso! ✔");
     }
   }
 }

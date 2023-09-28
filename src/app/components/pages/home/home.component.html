@@ -1,7 +1,7 @@
 <div class="main-title"><h1>NFT's</h1></div>
 <div class="cards" *ngIf="nfts">
     <div class="card" *ngFor="let nft of nfts">
-        <div class="img-area"><img src="/assets/nft-1.jpg" alt=""></div>
+        <div class="img-area"><img [src]="nft.img_url" alt=""></div>
         <h1 class="title">{{nft.name}}</h1>
         <p class="price">Valor: {{nft.price | currency: "BRL"}}</p>
         <p class="qtd">Qtd: {{nft.qtd}} disponíveis</p>

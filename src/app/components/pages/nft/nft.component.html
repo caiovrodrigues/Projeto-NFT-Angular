@@ -2,7 +2,7 @@
     <div class="title-main">NFT</div>
 
     <div class="card">
-        <div class="img-area"><img src="/assets/nft-1.jpg" alt=""></div>
+        <div class="img-area"><img [src]="nft.img_url" alt=""></div>
         <h1 class="title">{{nft.name}}</h1>
         <p class="price">Valor: {{nft.price | currency: "BRL"}}</p>
         <p class="qtd">Qtd: {{nft.qtd}} disponíveis</p>

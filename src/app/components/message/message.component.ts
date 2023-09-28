@@ -10,4 +10,7 @@ export class MessageComponent {
 
   constructor(public messageService: MessageService){}
 
+  closeAlert(){
+    this.messageService.close();
+  }
 }
