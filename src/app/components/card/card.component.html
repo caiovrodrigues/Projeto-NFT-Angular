@@ -1,0 +1,9 @@
+<div class="card" *ngIf="nft">
+    <div class="img-area" [ngStyle]="!verMais ? {'height': 'auto'} : {}"><img [src]="nft.img_url" alt=""></div>
+    <h1 class="title">{{nft.name}}</h1>
+    <p class="price">Valor: {{nft.price | currency : 'BRL'}}</p>
+    <p class="qtd">Qtd: {{nft.qtd}} disponíveis</p>
+    <a *ngIf="verMais" routerLink="nft/{{nft.id}}">Ver mais</a>
+    <p class="data" *ngIf="nft.date && !verMais">Postado em: {{nft.date | date: 'd/MM/yy'}} às {{nft.date | date : 'h:mm a'}}</p>
+    <div class="notificao" *ngIf="nft.comment!.length > 0 && verMais">{{nft.comment!.length}}</div>
+</div>

@@ -1,4 +1,4 @@
-@import '../pages/home/home.component.css';
+@import '../card/card.component.css';
 
 .container{
     max-width: 1100px;
