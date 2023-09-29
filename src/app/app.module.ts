@@ -14,6 +14,7 @@ import { MessageComponent } from './components/message/message.component';
 import { NftFormComponent } from './components/nft-form/nft-form.component';
 import { NftEditComponent } from './components/pages/nft-edit/nft-edit.component';
 import { CardComponent } from './components/card/card.component';
+import { TitleComponent } from './components/title/title.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CardComponent } from './components/card/card.component';
     MessageComponent,
     NftFormComponent,
     NftEditComponent,
-    CardComponent
+    CardComponent,
+    TitleComponent
   ],
   imports: [
     BrowserModule,

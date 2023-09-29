@@ -11,7 +11,7 @@ import { MessageService } from 'src/app/services/message.service';
   styleUrls: ['./nft-edit.component.css']
 })
 export class NftEditComponent {
-  titleTopo = 'Editando NFT';
+  title = 'Edite seu NFT';
   btnText = 'Editar';
 
   nftEdit!: Nft;

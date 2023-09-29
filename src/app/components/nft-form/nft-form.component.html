@@ -1,6 +1,6 @@
 
 <div class="container">
-    <div class="title-form"><h1>{{titleTopo}}</h1></div>
+    <app-title [title]="title"></app-title>
     <div class="form-container">
         <form (ngSubmit)="submit()" [formGroup]="nftForm" #formDir="ngForm">
             <div class="group">

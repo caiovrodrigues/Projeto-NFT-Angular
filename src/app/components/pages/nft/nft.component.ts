@@ -17,6 +17,8 @@ export class NftComponent {
   id: number | null = null;
   nft!: Nft;
   commentForm!: FormGroup;
+  
+  title = "NFT";
 
   constructor(private nftService: NftService, private comentarioService: ComentarioService, private route: ActivatedRoute, private messageService: MessageService){}
 

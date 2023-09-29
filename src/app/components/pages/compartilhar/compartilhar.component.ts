@@ -10,8 +10,8 @@ import { NftService } from 'src/app/services/nft.service';
   styleUrls: ['./compartilhar.component.css']
 })
 export class CompartilharComponent {
-  titleTopo = 'Crie seu NFT'
-  btnText = 'Enviar';
+  title = 'Crie seu NFT';
+  btnText = 'Criar';
 
   constructor(private nftService: NftService, private messageService: MessageService){}
 

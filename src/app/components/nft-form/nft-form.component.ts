@@ -10,8 +10,10 @@ import { Nft } from 'src/app/iNFT';
 })
 export class NftFormComponent {
   @Output() onSubmit = new EventEmitter();
+  
   @Input() btnText = '';
-  @Input() titleTopo = '';
+  @Input() title = '';
+
   @Input() nftEdit?: Nft;
 
   nftForm!: FormGroup;

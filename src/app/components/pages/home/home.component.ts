@@ -13,6 +13,7 @@ export class HomeComponent {
   // nfts$!: Observable<Nft[]>;
   nfts!: Nft[];
   verMais: boolean = true;
+  title = "NFT's"
 
   constructor(private nftService: NftService){}
 

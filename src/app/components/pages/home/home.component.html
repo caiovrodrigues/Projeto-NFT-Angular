@@ -1,4 +1,4 @@
-<div class="main-title"><h1>NFT's</h1></div>
+<app-title [title]="title"></app-title>
 <div class="cards" *ngIf="nfts">
     <app-card *ngFor="let nft of nfts" [nft]="nft" [verMais]="verMais"></app-card>
 </div>
