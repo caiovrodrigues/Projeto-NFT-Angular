@@ -8,9 +8,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
+import { NftFormComponent } from './components/nft-form/nft-form.component';
+import { CardComponent } from './components/card/card.component';
 
-import { NftFormComponent } from 'src/app/components/nft-form/nft-form.component';
-import { CardComponent } from 'src/app/components/card/card.component';
+
 
 @NgModule({
   declarations: [
