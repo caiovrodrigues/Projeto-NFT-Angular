@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Nft } from 'src/app/iNFT';
 import { NftService } from 'src/app/services/nft.service';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ComentarioService } from 'src/app/services/comentario.service';
-import Comentario from 'src/app/iComentario';
 
 @Component({
   selector: 'app-nft',
@@ -16,10 +15,14 @@ export class NftComponent {
 
   id: number | null = null;
   nft!: Nft;
-  commentForm!: FormGroup;
-  
-  title = "NFT";
 
+  private formBuilder = inject(FormBuilder);
+
+  commentForm = this.formBuilder.group({
+    usuario: ['', Validators.required],
+    comentario: ['', Validators.required]
+  })
+  
   constructor(private nftService: NftService, private comentarioService: ComentarioService, private route: ActivatedRoute, private messageService: MessageService){}
 
   ngOnInit(){
@@ -57,8 +60,16 @@ export class NftComponent {
 
   submitComment(){
     if(!this.commentForm.invalid){
+      const commentForm = {
+        usuario: this.commentForm.value.usuario as string,
+        comentario: this.commentForm.value.comentario as string
+      }
 
-      this.comentarioService.post(this.commentForm.value, this.id!).subscribe();
+      this.comentarioService.post(commentForm, this.id!).subscribe({
+        next: (response) => {
+          console.log(response);
+        }
+      });
 
       this.messageService.add("Comentário adicionado com sucesso! ✔");
     }

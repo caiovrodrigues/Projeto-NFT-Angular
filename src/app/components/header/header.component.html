@@ -1,12 +1,12 @@
-<header>
-    <div class="logo" routerLink="">
-        <h1><span>be</span>NFT</h1>
+<header class="flex justify-content-between align-items-center px-6 surface-50 border-bottom-1 surface-border shadow-1">
+    <div class="cursor-pointer" routerLink="">
+        <h1 class="text-5xl text-blue-500">beNFT</h1>
     </div>
     <nav>
-        <ul>
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/compartilhar">Compartilhar</a></li>
-            <li><a>About</a></li>
+        <ul class="flex list-none">
+            <li><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="" routerLinkActive="exact_route" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+            <li><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="/compartilhar" routerLinkActive="exact_route">Compartilhar</a></li>
+            <li><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="/login">Login</a></li>
         </ul>
     </nav>
 </header>

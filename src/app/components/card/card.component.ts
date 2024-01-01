@@ -8,5 +8,9 @@ import { Nft } from 'src/app/iNFT';
 })
 export class CardComponent {
   @Input() nft?: Nft;
-  @Input() verMais!: boolean;
+  @Input() imgFull: boolean = false;
+
+  ngOnInit(){
+    console.log('imgfull ', this.imgFull)
+  }
 }

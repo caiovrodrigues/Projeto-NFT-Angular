@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Nft } from 'src/app/iNFT';
 import { NftService } from 'src/app/services/nft.service';
 
@@ -12,8 +11,6 @@ export class HomeComponent {
 
   // nfts$!: Observable<Nft[]>;
   nfts!: Nft[];
-  verMais: boolean = true;
-  title = "NFT's"
 
   constructor(private nftService: NftService){}
 

@@ -1,4 +1,3 @@
-<app-title [title]="title"></app-title>
-<div class="cards" *ngIf="nfts">
-    <app-card *ngFor="let nft of nfts" [nft]="nft" [verMais]="verMais"></app-card>
+<div *ngIf="nfts" class="flex flex-wrap justify-content-evenly bg-gray-50 mt-4 border-round-lg shadow-2 m-auto" [ngStyle]="{maxWidth: '1100px'}">    
+    <app-card *ngFor="let nft of nfts" [nft]="nft"></app-card>
 </div>

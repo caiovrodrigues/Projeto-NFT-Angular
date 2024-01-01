@@ -12,7 +12,7 @@ export class ComentarioService {
 
   constructor(private http: HttpClient) { }
 
-  post(comentario: Comentario[], idNft: number): Observable<Comentario>{
+  post(comentario: Comentario, idNft: number): Observable<Comentario>{
     return this.http.post<Comentario>(`${this.apiUrl}/nft/${idNft}`, comentario);
   }
 

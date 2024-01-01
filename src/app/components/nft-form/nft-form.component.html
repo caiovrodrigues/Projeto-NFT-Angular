@@ -1,52 +1,59 @@
-
-<div class="container">
-    <app-title [title]="title"></app-title>
-    <div class="form-container">
-        <form (ngSubmit)="submit()" [formGroup]="nftForm" #formDir="ngForm">
-            <div class="group">
-                <label for="name">Nome:</label>
-                <input type="text" formControlName="name" placeholder="Nome do seu NFT">
+<div>
+    <h1 class="text-color text-center pt-3">{{title}}</h1>
+    <div class="grid gap-3 p-3">
+        <form [formGroup]="nftForm" #formDir="ngForm" (ngSubmit)="submit()" class="flex flex-column col gap-5">
+            <div class="relative">
+                <span class="p-float-label">
+                    <input pInputText class="w-full" id="username" formControlName="name" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
+                    <label htmlFor="username">Nome</label>
+                </span>
                 <div *ngIf="name.invalid && formDir.submitted" class="error">
-                  <p>O nome é obrigatório</p>
+                    <p class="absolute mt-1 text-sm text-red-500">O nome é obrigatório</p>
                 </div>
             </div>
-
-            <div class="group">
-                <label for="description">Descrição:</label>
-                <textarea rows="4" formControlName="description" placeholder="Fale um pouco sobre ele..."></textarea>
+    
+            <div>
+                <span class="p-float-label">
+                    <textarea class="w-full" formControlName="description" rows="4" cols="30" pInputTextarea [autoResize]="true"></textarea>
+                    <label>Descrição</label>
+                </span>
             </div>
-
-            <div class="group">
-                <label for="name">Preço:</label>
-                <input type="number" formControlName="price" placeholder="Dê um preço">
+    
+            <div>
+                <span class="p-float-label">
+                    <p-inputNumber formControlName="price" inputId="integeronly" [minFractionDigits]="2" [maxFractionDigits]="2" mode="currency" currency="BRL" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"> </p-inputNumber>
+                    <label htmlFor="number-input">Preço</label>
+                </span>
                 <div *ngIf="price.invalid && formDir.submitted" class="error">
-                    <p>Insira um preço</p>
+                    <p class="absolute mt-1 text-sm text-red-500">Insira um preço</p>
                 </div>
             </div>
-
-            <div class="group">
-                <label for="qtd">Quantidade disponível:</label>
-                <input type="number" formControlName="qtd" placeholder="Quantidade disponível">
+    
+            <div>
+                <span class="p-float-label">
+                    <p-inputNumber formControlName="qtd" inputId="integeronly" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"> </p-inputNumber>
+                    <label htmlFor="number-input">Quantidade</label>
+                </span>
                 <div *ngIf="qtd.invalid && formDir.submitted" class="error">
-                    <p>Insira uma quantidade</p>
+                    <p class="absolute mt-1 text-sm text-red-500">Insira uma quantidade</p>
                 </div>
             </div>
-            <div class="group">
-              <label>Escolha a melhor foto:</label>
-              <input type="file" id="inputFile" (change)="fileSelected()">
+            <div>
+                <label class="block text-color mb-2">Escolha a melhor foto:</label>
+                <p-fileUpload mode="basic" chooseLabel="Upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" [maxFileSize]="1000000" (onUpload)="fileSelected($event)" [auto]="true"></p-fileUpload>
             </div>
-
-            <div class="group">
-              <button>{{btnText}}</button>
+    
+            <div>
+                <button pButton pRipple [label]="btnText" class="w-full" type="submit"></button>
             </div>
         </form>
-
-        <div class="card-model">
-            <div class="card">
-                <div class="img-area"><img [src]="nftForm.value.img_url ? nftForm.value.img_url : 'https://www.promoview.com.br/uploads/images/unnamed%2819%29.png'" id="imgModel"></div>
-                <h1 class="title">{{nftForm.value.name == '' ? 'Nome NFT' : nftForm.value.name}}</h1>
-                <p class="price">Valor: {{nftForm.value.price | currency: 'BRL'}}</p>
-                <p class="qtd">Qtd: {{nftForm.value.qtd}} disponíveis</p>
+    
+        <div class="col flex justify-content-center">
+            <div class="">
+                <div class="img-area w-full"><img class="max-w-20rem h-20rem" [src]="nftForm.value.img_url ? nftForm.value.img_url : 'https://www.promoview.com.br/uploads/images/unnamed%2819%29.png'" [ngStyle]="{objectFit: 'cover'}"></div>
+                <h1 class="text-color text-2xl text-center">{{nftForm.value.name == '' ? 'Nome' : nftForm.value.name}}</h1>
+                <p class="price">Preço: {{nftForm.value.price | currency: 'BRL'}}</p>
+                <p class="qtd">Quantidade: {{nftForm.value.qtd}} disponíveis</p>
             </div>
         </div>
     </div>

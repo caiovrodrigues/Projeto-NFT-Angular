@@ -1,65 +1,63 @@
-@import '../card/card.component.css';
-
 .container{
-    max-width: 1100px;
-    margin: auto;
+    /* max-width: 1100px;
+    margin: auto; */
 }
 .form-container{
-    background-color: #051c28;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 0 2rem 0;
+    /* background-color: #051c28; */
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr; */
+    /* padding: 0 0 2rem 0; */
 }
 
 form{
-    display: flex;
-    flex-direction: column;
-    padding: 0 3rem;
-    gap: 2rem;
+    /* display: flex;
+    flex-direction: column; */
+    /* padding: 0 3rem; */
+    /* gap: 2rem; */
 }
 .group{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    gap: .4rem;
+    gap: .4rem; */
 }
 .group label{
-    font-size: 2rem;
-    color: white;
+    /* font-size: 2rem; */
+    /* color: white; */
 }
 
 .group input[type="text"],
 .group input[type="number"],
 textarea{
-    background-color: rgb(217, 217, 217);
-    outline: 0;
-    border: none;
-    color: black;
-    padding: .5rem 1rem;
-    font-size: 2rem;
-    resize: none;
+    /* background-color: rgb(217, 217, 217); */
+    /* outline: 0; */
+    /* border: none; */
+    /* color: black; */
+    /* padding: .5rem 1rem; */
+    /* font-size: 2rem; */
+    /* resize: none; */
 }
 input[type="file"]{
-  font-size: 1.5rem;
-  color: rgb(209, 209, 209);
+  /* font-size: 1.5rem; */
+  /* color: rgb(209, 209, 209); */
 }
 
 .card-model{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
 .group button{
-  background-color: #2d9999;
-  border: none;
-  font-size: 2rem;
-  color: white;
-  text-transform: uppercase;
-  padding: 1rem 0;
-  cursor: pointer;
+  /* background-color: #2d9999; */
+  /* border: none; */
+  /* font-size: 2rem; */
+  /* color: white; */
+  /* text-transform: uppercase; */
+  /* padding: 1rem 0; */
+  /* cursor: pointer; */
 }
 
 .error{
-  color: red;
-  font-size: 1.3rem;
+  /* color: red;
+  font-size: 1.3rem; */
 }

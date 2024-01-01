@@ -53,10 +53,12 @@ export class NftFormComponent {
     this.onSubmit.emit(this.nftForm.value);
   }
 
-  fileSelected(){
-    const file = document.getElementById('inputFile') as HTMLInputElement;
-
-    const imgBlob = URL.createObjectURL(file.files![0]);
+  fileSelected(data:any){
+    console.log('Arquivo upado');
+    
+    console.log('Upload: ', data);
+    
+    const imgBlob = URL.createObjectURL(data.files![0]);
 
     this.nftForm.patchValue({img_url: imgBlob});
 
