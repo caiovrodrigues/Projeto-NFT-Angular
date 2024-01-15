@@ -55,7 +55,6 @@ export class AuthService {
   usuarioLogado(): boolean{
     console.log('passou pelo usuarioLogado');
     return this.cookieService.check("token");
-  
   }
 
   checkAuthorizationEdit(idNft: number): Observable<{logado: boolean}>{

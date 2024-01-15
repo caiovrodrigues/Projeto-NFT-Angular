@@ -14,6 +14,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { BadgeModule } from 'primeng/badge';
     //Shared
     SharedModule,
   ],
-  providers: [MessageService],
+  providers: [MessageService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

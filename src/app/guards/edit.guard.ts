@@ -23,7 +23,7 @@ export const editGuard: CanActivateFn = (route, state) => {
         }else{
           reject("Você não é owner do nft para editá-lo");
           router.navigate([state.url.substring(0, 6)]);
-          messageService.add({severity: "error", summary: "Erro ao acessar rota de edição", detail: "Você não é dono do nft que está tentando editar"});
+          messageService.add({severity: "warn", summary: "Erro ao acessar rota de edição", detail: "Você não é dono do nft que está tentando editar"});
         }
       }
       })

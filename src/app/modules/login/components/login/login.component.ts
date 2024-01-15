@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -13,6 +15,8 @@ export class LoginComponent {
   private authService = inject(AuthService);
   private cookieService = inject(CookieService);
   private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
+  private messageService = inject(MessageService);
 
   loginForm = this.formBuilder.group({
     username: ['', Validators.required],
@@ -39,7 +43,13 @@ export class LoginComponent {
     .subscribe({
       next: (response) => {
         console.log("Deu certo: ", response);
-        this.cookieService.set("token", response.token);
+        this.router.navigate(['']);
+        this.messageService.add({severity: 'success', summary: 'Autenticado', detail: 'Login realizado com sucesso!'});
+        let dateNow = new Date();
+        dateNow.setHours(dateNow.getMinutes() + 1);
+        console.log('expiration token: ', dateNow);
+        
+        this.cookieService.set("token", response.token, {expires: dateNow});
         this.authService.setLogadoSubject(true);
       },
       error: (err) => {
