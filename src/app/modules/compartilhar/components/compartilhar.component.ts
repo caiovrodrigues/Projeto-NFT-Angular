@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Nft } from 'src/app/iNFT';
-import { MessageService } from 'src/app/services/message.service';
-import { NftService } from 'src/app/services/nft.service';
+import { Component, inject } from '@angular/core';
+import { Nft } from 'src/app/interfaces/iNFT';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { NftService } from 'src/app/services/nft/nft.service';
 
 
 @Component({
@@ -13,11 +13,12 @@ export class CompartilharComponent {
   title = 'Crie seu NFT';
   btnText = 'Criar';
 
-  constructor(private nftService: NftService, private messageService: MessageService){}
+  private authService = inject(AuthService);
+
+  constructor(private nftService: NftService){}
 
   onSubmit(nft: Nft){
-    this.nftService.post(nft).subscribe();
-    this.messageService.add(`Parabéns, ${nft.name} foi criado com sucesso!`);
+    this.nftService.post(nft, this.authService.getIdUsuarioLogado()).subscribe();
     console.log(nft);
   }
 }

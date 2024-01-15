@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Nft } from 'src/app/iNFT';
+import { Nft } from 'src/app/interfaces/iNFT';
 
 @Component({
   selector: 'app-card',
@@ -10,7 +10,4 @@ export class CardComponent {
   @Input() nft?: Nft;
   @Input() imgFull: boolean = false;
 
-  ngOnInit(){
-    console.log('imgfull ', this.imgFull)
-  }
 }

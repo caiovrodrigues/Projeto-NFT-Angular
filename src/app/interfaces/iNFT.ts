@@ -1,5 +1,9 @@
 export interface Nft{
   id?: number | string;
+  user: {
+    id: number,
+    username: string
+  };
   date: Date;
   name: string;
   description: string;

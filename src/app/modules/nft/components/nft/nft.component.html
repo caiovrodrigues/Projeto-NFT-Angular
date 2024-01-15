@@ -1,12 +1,15 @@
 <div *ngIf="nft" class="container flex flex-column align-items-center m-auto mt-4 mb-4 pb-4 bg-gray-50 border-round-lg shadow-2" [ngStyle]="{maxWidth: '1100px'}">
     <app-card [imgFull]="true" [nft]="nft"></app-card>
+    <div *ngIf="nft.user" class="w-17rem m-auto">
+        <span>Feito por: <b>{{nft.user.username | titlecase}}</b></span>
+    </div>
 
-    <div class="flex gap-2">
-        <p-button icon="pi pi-pencil" routerLink="editar" severity="warning" pTooltip="Editar" tooltipPosition="left"></p-button>
+    <div class="flex gap-2 mt-2" *ngIf="nftOwner">
+        <p-button icon="pi pi-pencil" [routerLink]="['editar']" severity="warning" pTooltip="Editar" tooltipPosition="left"></p-button>
         <p-button icon="pi pi-trash" (onClick)="deleteNft(nft)" severity="danger" pTooltip="Excluir" tooltipPosition="right"></p-button>
     </div>
 
-    <div [ngStyle]="{maxWidth: '700px'}">
+    <div [ngStyle]="{maxWidth: '700px', width: '100%'}">
         <p class="text-color text-xl text-center">{{nft.description}}</p>
 
         <div class="w-full">

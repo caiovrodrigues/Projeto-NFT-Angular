@@ -3,10 +3,17 @@
         <h1 class="text-5xl text-blue-500">beNFT</h1>
     </div>
     <nav>
-        <ul class="flex list-none">
+        <ul class="flex list-none align-items-center">
             <li><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="" routerLinkActive="exact_route" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
             <li><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="/compartilhar" routerLinkActive="exact_route">Compartilhar</a></li>
-            <li><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="/login">Login</a></li>
+            <li *ngIf="!logado"><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="/auth" routerLinkActive="exact_route">Login</a></li>
+            <li *ngIf="logado" class="mr-3">
+                <i class="pi pi-bell text-4xl" pBadge value="2"></i>
+            </li>
+            <li *ngIf="logado" (click)="logout()">
+                <p-avatar label="B" styleClass="mr-2" size="large" shape="circle" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }"></p-avatar>
+            </li>
+            
         </ul>
     </nav>
 </header>

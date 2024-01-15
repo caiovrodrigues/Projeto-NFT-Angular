@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { NftService } from 'src/app/services/nft.service';
-import { ActivatedRoute } from '@angular/router';
-import { Nft } from 'src/app/iNFT';
-import { Observable } from 'rxjs';
-import { MessageService } from 'src/app/services/message.service';
+import { Component, inject } from '@angular/core';
+import { NftService } from 'src/app/services/nft/nft.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Nft } from 'src/app/interfaces/iNFT';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-nft-edit',
@@ -14,22 +13,28 @@ export class NftEditComponent {
   title = 'Edite seu NFT';
   btnText = 'Editar';
 
+  private router = inject(Router);
+  private messageService = inject(MessageService);
+
   nftEdit!: Nft;
 
   id: number = 0;
 
-  constructor(private nftService: NftService, private route: ActivatedRoute, private messageService: MessageService){}
+  constructor(private nftService: NftService, private route: ActivatedRoute){}
 
   ngOnInit(){
     this.id = Number(this.route.snapshot.paramMap.get("id"));
-    console.log(this.id);
 
     this.nftService.getNft(this.id).subscribe(nft => this.nftEdit = nft);
   }
 
   onSubmit(nft: Nft){
-    this.nftService.put(nft, this.id).subscribe();
-    this.messageService.add(`${nft.name} alterado com sucesso`);
+    this.nftService.put(nft, this.id).subscribe({
+      next: () => {
+        this.messageService.add({severity: "success", summary: "Sucesso", detail: "NFT editado com sucesso!"});
+        this.router.navigate(["./"]);
+      }
+    });
     console.log(nft);
   }
 }

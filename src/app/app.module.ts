@@ -10,6 +10,10 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [
@@ -25,10 +29,13 @@ import { SharedModule } from './modules/shared/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     //PRIME NG
+    ToastModule,
+    AvatarModule,
+    BadgeModule,
     //Shared
-    SharedModule
+    SharedModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

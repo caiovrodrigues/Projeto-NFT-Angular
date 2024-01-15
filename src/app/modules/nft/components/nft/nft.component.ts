@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { Nft } from 'src/app/iNFT';
-import { NftService } from 'src/app/services/nft.service';
+import { Nft } from 'src/app/interfaces/iNFT';
+import { NftService } from 'src/app/services/nft/nft.service';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService } from 'src/app/services/message.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ComentarioService } from 'src/app/services/comentario.service';
+import { ComentarioService } from 'src/app/services/comentario/comentario.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-nft',
@@ -16,6 +16,9 @@ export class NftComponent {
   id: number | null = null;
   nft!: Nft;
 
+  nftOwner: boolean = false;
+
+  private cookieService = inject(CookieService);
   private formBuilder = inject(FormBuilder);
 
   commentForm = this.formBuilder.group({
@@ -23,7 +26,7 @@ export class NftComponent {
     comentario: ['', Validators.required]
   })
   
-  constructor(private nftService: NftService, private comentarioService: ComentarioService, private route: ActivatedRoute, private messageService: MessageService){}
+  constructor(private nftService: NftService, private comentarioService: ComentarioService, private route: ActivatedRoute){}
 
   ngOnInit(){
     this.id = Number(this.route.snapshot.paramMap.get("id"));
@@ -33,6 +36,11 @@ export class NftComponent {
     this.nftService.getNft(this.id).subscribe({
       next: (nft) => {
         this.nft = nft;
+        
+        if(nft.user.id == Number(this.cookieService.get("token"))){
+          console.log('nft.user.id == this.id');
+          this.nftOwner = true;
+        }
       },
       error: (error) => {
         console.log('Algo deu errado', error);
@@ -54,7 +62,6 @@ export class NftComponent {
   }
 
   deleteNft(nft: Nft){
-    this.messageService.add("Nft excluído com sucesso!");
     this.nftService.delete(nft).subscribe();
   }
 
@@ -71,7 +78,6 @@ export class NftComponent {
         }
       });
 
-      this.messageService.add("Comentário adicionado com sucesso! ✔");
     }
   }
 }

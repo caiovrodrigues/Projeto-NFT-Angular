@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Nft } from 'src/app/iNFT';
+import { Nft } from 'src/app/interfaces/iNFT';
 
 @Component({
   selector: 'app-nft-form',
