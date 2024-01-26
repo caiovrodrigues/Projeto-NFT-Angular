@@ -1,24 +1,43 @@
 <div class="card bg-gray-50 mt-4 border-round-lg shadow-2 m-auto" [ngStyle]="{maxWidth: '1100px'}">
 
-    <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+    <form [formGroup]="signUpForm" #formDir="ngForm" (ngSubmit)="submit()">
         <div class="flex flex-column">
             <div class="w-full flex flex-column align-items-center justify-content-center gap-3 py-5">
-                <div class="flex flex-wrap justify-content-center align-items-center gap-2">
-                    <label class="w-8rem">Email</label>
-                    <input pInputText formControlName="email" type="text" class="w-12rem" />
+                <div>
+                    <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <label class="w-8rem">Email</label>
+                        <input pInputText formControlName="email" type="text" class="w-12rem" [ngClass]="email.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
+                    </div>
+                    <p *ngIf="email.getError('required') && formDir.submitted" class="text-red-600 text-center my-1">Campo não pode ser vazio</p>
+                    <p *ngIf="email.getError('email') && formDir.submitted" class="text-red-600 text-center my-1">Deve ser um email</p>
                 </div>
-                <div class="flex flex-wrap justify-content-center align-items-center gap-2">
-                    <label class="w-8rem">Username</label>
-                    <input pInputText formControlName="username" type="text" class="w-12rem" />
+                
+                <div>
+                    <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <label class="w-8rem">Username</label>
+                        <input pInputText formControlName="username" type="text" class="w-12rem" [ngClass]="username.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
+                    </div>
+                    <p *ngIf="username.invalid && formDir.submitted" class="text-red-600 text-center my-1">Campo não pode ser vazio</p>
                 </div>
-                <div class="flex flex-wrap justify-content-center align-items-center gap-2">
-                    <label class="w-8rem">Senha</label>
-                    <input pInputText formControlName="senha" type="password" class="w-12rem" />
+                
+                <div>
+                    <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <label class="w-8rem">Senha</label>
+                        <input pInputText formControlName="senha" type="password" class="w-12rem" [ngClass]="senha.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
+                    </div>
+                    <p *ngIf="senha.getError('required') && formDir.submitted" class="text-red-600 text-center my-1">Campo não pode ser vazio</p>
+                    <p *ngIf="senha.getError('minlength') && formDir.submitted" class="text-red-600 text-center my-1">Deve conter 6 letras, faltam {{6 - senha.getError('minlength').actualLength}}</p>
                 </div>
-                <div class="flex flex-wrap justify-content-center align-items-center gap-2">
-                    <label class="w-8rem">Confirma senha</label>
-                    <input pInputText formControlName="confirmaSenha" type="password" class="w-12rem" />
+
+                <div>
+                    <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <label class="w-8rem">Confirma senha</label>
+                        <input pInputText formControlName="confirmaSenha" type="password" class="w-12rem" [ngClass]="confirmaSenha.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
+                    </div>
+                    <p *ngIf="confirmaSenha.getError('required') && formDir.submitted" class="text-red-600 text-center my-1">Campo não pode ser vazio</p>
+                    <p *ngIf="confirmaSenha.getError('minlength') && formDir.submitted" class="text-red-600 text-center my-1">Deve conter 6 letras, faltam {{6 - confirmaSenha.getError('minlength').actualLength}}</p>
                 </div>
+                
                 <p-button label="Criar conta" severity="success" type="submit" icon="pi pi-user-plus" styleClass="w-10rem mx-auto"></p-button>
             </div>
             <div class="w-full md:w-4 m-auto">

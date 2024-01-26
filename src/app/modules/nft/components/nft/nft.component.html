@@ -1,10 +1,10 @@
 <div *ngIf="nft" class="container flex flex-column align-items-center m-auto mt-4 mb-4 pb-4 bg-gray-50 border-round-lg shadow-2" [ngStyle]="{maxWidth: '1100px'}">
     <app-card [imgFull]="true" [nft]="nft"></app-card>
-    <div *ngIf="nft.user" class="w-17rem m-auto">
-        <span>Feito por: <b>{{nft.user.username | titlecase}}</b></span>
+    <div class="w-17rem m-auto">
+        <span>Feito por: <b>{{nft.user.name | titlecase}}</b></span>
     </div>
-
-    <div class="flex gap-2 mt-2" *ngIf="nftOwner">
+    
+    <div class="flex gap-2 mt-2" *ngIf="isOwner">
         <p-button icon="pi pi-pencil" [routerLink]="['editar']" severity="warning" pTooltip="Editar" tooltipPosition="left"></p-button>
         <p-button icon="pi pi-trash" (onClick)="deleteNft(nft)" severity="danger" pTooltip="Excluir" tooltipPosition="right"></p-button>
     </div>
@@ -13,15 +13,20 @@
         <p class="text-color text-xl text-center">{{nft.description}}</p>
 
         <div class="w-full">
-            <h1 class="text-center text-color text-2xl">Comentários: ({{nft.comment!.length}})</h1>
-            <div class="flex flex-column gap-3 mt-3" *ngIf="nft.comment!.length">
-                <div class="flex gap-3" *ngFor="let comment of nft.comment">
-                    <div class="w-3rem h-3rem">
-                        <img src="assets/foto-perfil-comentario.jfif" class="w-full h-full border-circle" [ngStyle]="{objectFit: 'cover'}">
+            <h1 class="text-center text-color text-2xl">Comentários: ({{comments.length}})</h1>
+            <div class="flex flex-column gap-3 mt-3" *ngIf="comments.length > 0">
+                <div class="flex justify-content-between" *ngFor="let comment of comments">
+                    <div class="flex gap-3">
+                        <div class="w-3rem h-3rem">
+                            <img src="assets/foto-perfil-comentario.jfif" class="w-full h-full border-circle" [ngStyle]="{objectFit: 'cover'}">
+                        </div>
+                        <div class="flex flex-column gap-1">
+                            <div class="font-bold">{{comment.username| titlecase}} - <span class="font-normal font-italic text-sm text-600">{{comment.date| date: 'dd/MM/YYYY'}} às {{comment.date | date: 'HH:mm:ss'}}</span></div>
+                            <div>{{comment.message}}</div>
+                        </div>
                     </div>
-                    <div class="flex flex-column gap-1">
-                        <div class="font-bold">{{comment.usuario | titlecase}} - <span class="font-normal font-italic text-sm text-600">{{comment.date | date: 'dd/MM/YYYY'}} às {{comment.date | date: 'HH:mm:ss'}}</span></div>
-                        <div>{{comment.comentario}}</div>
+                    <div *ngIf="userLogado && comment.userId == userLogado?.id">
+                        <p-button icon="pi pi-trash" (onClick)="deleteComment(comment.id)" severity="danger" [rounded]="true" size="small" [outlined]="true" pTooltip="Excluir" tooltipPosition="right"></p-button>
                     </div>
                 </div>
             </div>
@@ -31,10 +36,10 @@
             <form [formGroup]="commentForm" #formDir="ngForm" (ngSubmit)="submitComment()">
                 <h1 class="text-color text-2xl mb-4">Deixe seu comentário</h1>
                 <div class="flex flex-column gap-4">
-                    <div class="">
+                    <div>
                         <span class="p-float-label">
-                            <input pInputText class="w-full" formControlName="usuario" />
-                            <label>Nome</label>
+                            <input pInputText id="usuario" class="w-full" formControlName="usuario" />
+                            <label for="usuario">Nome</label>
                         </span>
                         <div *ngIf="usuario!.invalid && formDir.submitted">
                             <p class="m-0 mt-1 text-red-500">O nome é obrigatório</p>
@@ -44,10 +49,10 @@
         
                     <div class="c-group">
                         <span class="p-float-label">
-                            <textarea class="w-full" rows="4" formControlName="comentario" pInputTextarea [autoResize]="true"></textarea>
-                            <label for="float-input">Comentário</label>
+                            <textarea class="w-full" rows="4" formControlName="mensagem" id="mensagem" pInputTextarea [autoResize]="true"></textarea>
+                            <label for="mensagem">Comentário</label>
                         </span>
-                        <div *ngIf="comentario!.invalid && formDir.submitted">
+                        <div *ngIf="mensagem!.invalid && formDir.submitted">
                             <p class="m-0 mt-1 text-red-500">O comentário não pode ser vazio</p>
                         </div>
                     </div>

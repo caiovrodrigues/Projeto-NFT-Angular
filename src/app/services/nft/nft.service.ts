@@ -28,7 +28,7 @@ export class NftService {
     return this.http.put<Nft>(`${this.apiUrl}/api/nft/atualizar/${id}`, nft);
   }
 
-  delete(nft: Nft){
-    return this.http.delete(`${this.apiUrl}/api/nft`, {body: nft});
+  delete(id: number){
+    return this.http.delete(`${this.apiUrl}/api/nft/${id}`);
   }
 }

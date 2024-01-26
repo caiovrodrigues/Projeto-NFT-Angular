@@ -21,7 +21,7 @@
     
             <div>
                 <span class="p-float-label">
-                    <p-inputNumber formControlName="price" inputId="integeronly" [minFractionDigits]="2" [maxFractionDigits]="2" mode="currency" currency="BRL" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"> </p-inputNumber>
+                    <p-inputNumber formControlName="price" [minFractionDigits]="2" [maxFractionDigits]="2" mode="currency" currency="BRL" locale="pt-br" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"> </p-inputNumber>
                     <label htmlFor="number-input">Preço</label>
                 </span>
                 <div *ngIf="price.invalid && formDir.submitted" class="error">
@@ -31,7 +31,7 @@
     
             <div>
                 <span class="p-float-label">
-                    <p-inputNumber formControlName="qtd" inputId="integeronly" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"> </p-inputNumber>
+                    <p-inputNumber formControlName="qtd" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"> </p-inputNumber>
                     <label htmlFor="number-input">Quantidade</label>
                 </span>
                 <div *ngIf="qtd.invalid && formDir.submitted" class="error">
@@ -49,7 +49,7 @@
         </form>
     
         <div class="col flex justify-content-center">
-            <div class="">
+            <div>
                 <div class="img-area w-full"><img class="max-w-20rem h-20rem" [src]="nftForm.value.img_url ? nftForm.value.img_url : 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'" [ngStyle]="{objectFit: 'cover'}"></div>
                 <h1 class="text-color text-2xl text-center">{{nftForm.value.name == '' ? 'Nome' : nftForm.value.name}}</h1>
                 <p class="price">Preço: {{nftForm.value.price | currency: 'BRL'}}</p>

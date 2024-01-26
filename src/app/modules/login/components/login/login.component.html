@@ -5,7 +5,7 @@
                 <div>
                     <div class="flex flex-wrap justify-content-center align-items-center gap-2">
                         <label class="w-6rem">Username</label>
-                        <input pInputText formControlName="username" type="text" class="w-12rem" />
+                        <input pInputText formControlName="username" name="username" type="text" class="w-12rem" />
                         
                     </div>
                     <div *ngIf="username.invalid && username.dirty">
@@ -15,7 +15,7 @@
                 <div>
                     <div class="flex flex-wrap justify-content-center align-items-center gap-2">
                         <label class="w-6rem">Senha</label>
-                        <input pInputText formControlName="password" type="password" class="w-12rem" />
+                        <input pInputText formControlName="password" name="password" type="password" class="w-12rem" />
                     </div>
                     <div *ngIf="password.invalid && password.dirty">
                         <p class="text-red-500 text-right mt-1">Esse campo é obrigatório</p>

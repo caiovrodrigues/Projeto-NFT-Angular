@@ -18,14 +18,26 @@ export class NftFormComponent {
 
   nftForm!: FormGroup;
 
+  isAddMode!: boolean;
+
   ngOnInit(){
+    this.nftEdit ? this.isAddMode = true : this.isAddMode = false;
+
     this.nftForm = new FormGroup({
-      name: new FormControl(this.nftEdit ? this.nftEdit.name : '', [Validators.required]),
-      description: new FormControl(this.nftEdit ? this.nftEdit.description : ''),
-      price: new FormControl((this.nftEdit?.price), Validators.required),
-      qtd: new FormControl(this.nftEdit?.qtd, Validators.required),
+      name: new FormControl('', [Validators.required]),
+      description: new FormControl(''),
+      price: new FormControl(null, Validators.required),
+      qtd: new FormControl(null, Validators.required),
       img_url: new FormControl(this.nftEdit?.img_url)
     })
+
+    if(this.isAddMode == true){
+      this.nftForm.patchValue({name: this.nftEdit?.name});
+      this.nftForm.patchValue({description: this.nftEdit?.description});
+      this.nftForm.patchValue({price: this.nftEdit?.price});
+      this.nftForm.patchValue({qtd: this.nftEdit?.qtd});
+      this.nftForm.patchValue({img_url: this.nftEdit?.img_url});
+    }
   }
 
   get name(){

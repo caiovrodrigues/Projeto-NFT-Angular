@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Nft } from 'src/app/interfaces/iNFT';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 import { NftService } from 'src/app/services/nft/nft.service';
 
 
@@ -13,12 +15,29 @@ export class CompartilharComponent {
   title = 'Crie seu NFT';
   btnText = 'Criar';
 
-  private authService = inject(AuthService);
+  private isLoggedService = inject(IsLoggedService);
+  private router = inject(Router);
+  private messageService = inject(MessageService);
 
   constructor(private nftService: NftService){}
 
   onSubmit(nft: Nft){
-    this.nftService.post(nft, this.authService.getIdUsuarioLogado()).subscribe();
-    console.log(nft);
+    let checkHasToken = this.isLoggedService.checkHasToken();
+
+    if(!checkHasToken){
+      this.router.navigate(['auth']);
+      this.messageService.add({severity: 'info', summary: 'Atenção', detail: 'Você precisa estar logado para poder compartilhar um nft'});
+      return;
+    }
+
+    let userFromToken = this.isLoggedService.getUserFromToken();
+
+    this.nftService.post(nft, userFromToken.id).subscribe({
+      next: () => {
+        this.messageService.add({severity: 'success', summary: 'Parabéns', detail: 'Seu novo NFT foi compartilhado!'})
+        this.router.navigate(['']);
+      },
+      error: () => this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao compartilhar seu nft'})
+    });
   }
 }

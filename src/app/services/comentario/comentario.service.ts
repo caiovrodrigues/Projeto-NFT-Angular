@@ -12,11 +12,15 @@ export class ComentarioService {
 
   constructor(private http: HttpClient) { }
 
-  post(comentario: Comentario, idNft: number): Observable<Comentario>{
-    return this.http.post<Comentario>(`${this.apiUrl}/api/nft/${idNft}`, comentario);
+  postComment(userId: number, nftId: number, comentario: {mensagem: string} ): Observable<Comentario>{
+    return this.http.post<Comentario>(`${this.apiUrl}/api/comments/usuario/${userId}/nft/${nftId}`, comentario);
   }
 
-  getCommentsNft(id: number): Observable<Comentario>{
-    return this.http.get<Comentario>(`${this.apiUrl}/api/nft/comments/${id}`);
+  getCommentsNft(idNft: number): Observable<Comentario[]>{
+    return this.http.get<Comentario[]>(`${this.apiUrl}/api/comments/nft/${idNft}`);
+  }
+
+  delete(id: number, userId: number){
+    return this.http.delete<void>(`${this.apiUrl}/api/comments/delete/${id}/user/${userId}`);
   }
 }

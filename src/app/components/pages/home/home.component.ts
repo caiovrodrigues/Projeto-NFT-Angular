@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { Nft } from 'src/app/interfaces/iNFT';
+import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 import { NftDataTransferService } from 'src/app/services/nft data transfer/nft-data-transfer.service';
 import { NftService } from 'src/app/services/nft/nft.service';
 
@@ -8,27 +10,30 @@ import { NftService } from 'src/app/services/nft/nft.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy{
 
-  // nfts$!: Observable<Nft[]>;
+  destroy$ = new Subject<void>();
   nfts!: Nft[];
 
-  private nftDataTransfer = inject(NftDataTransferService);
   constructor(private nftService: NftService){}
 
   ngOnInit(){
     
-    this.nftService.getAll().subscribe({
+    this.nftService.getAll()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
       next: (nfts) => {
         this.nfts = nfts;
-        this.nftDataTransfer.NFTS_DATA$.next(nfts);
       },
       error: (error) => {
         console.log("Deu algum erro", error);
       }
     });
+  }
 
-    // this.nfts$ = this.nftService.getAll();
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

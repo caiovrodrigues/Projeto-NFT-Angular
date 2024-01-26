@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class LoginComponent {
 
   private authService = inject(AuthService);
+  private isLoggedService = inject(IsLoggedService);
   private cookieService = inject(CookieService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
@@ -45,14 +47,14 @@ export class LoginComponent {
         console.log("Deu certo: ", response);
         this.router.navigate(['']);
         this.messageService.add({severity: 'success', summary: 'Autenticado', detail: 'Login realizado com sucesso!'});
-        let dateNow = new Date();
-        dateNow.setHours(dateNow.getMinutes() + 1);
-        console.log('expiration token: ', dateNow);
         
-        this.cookieService.set("token", response.token, {expires: dateNow});
-        this.authService.setLogadoSubject(true);
+        this.isLoggedService.setUserToken(response);
+
+        console.log("token do cookie: ", JSON.parse(this.cookieService.get("token")));
+        
       },
       error: (err) => {
+        this.messageService.add({severity: 'error', summary: 'Houve um erro', detail: err.error.message});
         console.log(err);
       }
     });

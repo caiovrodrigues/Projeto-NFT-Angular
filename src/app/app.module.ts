@@ -8,19 +8,24 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/pages/home/home.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { CookieService } from 'ngx-cookie-service';
+import { SpinnerComponent } from './modules/shared/components/spinner/spinner.component';
+import { LoadingInterceptor } from './loading.interceptor';
+import { FirstletterPipe } from './pipes/firstletter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    SpinnerComponent,
+    FirstletterPipe
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,10 @@ import { CookieService } from 'ngx-cookie-service';
     //Shared
     SharedModule,
   ],
-  providers: [MessageService, CookieService],
+  providers: [MessageService, CookieService,
+  {
+    provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,14 +1,14 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
 import { inject } from '@angular/core';
+import { IsLoggedService } from '../services/isLogged/is-logged.service';
 
 export const canAccessAuthGuard: CanActivateFn = (route, state) => {
 
-  const authService = inject(AuthService);
+  const isLoggedService = inject(IsLoggedService);
   const router = inject(Router);
 
-  let isLoggedIn = authService.usuarioLogado();
-  if(isLoggedIn){
+  let hasToken = isLoggedService.checkHasToken();
+  if(hasToken){
     router.navigate(['']);
     return false;
   }
