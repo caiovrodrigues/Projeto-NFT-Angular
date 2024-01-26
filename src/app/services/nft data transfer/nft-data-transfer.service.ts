@@ -24,7 +24,7 @@ export class NftDataTransferService {
     .pipe(take(1))
     .subscribe({
       next: (response) => {
-        this.nft_data = response;
+        this.nft_data = response.content;
       },
       error: (error) => {
         console.log(error);

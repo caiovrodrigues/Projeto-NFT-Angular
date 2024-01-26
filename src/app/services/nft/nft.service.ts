@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Nft } from '../../interfaces/iNFT';
 import { Observable } from 'rxjs';
+import { PageableResponseNfts } from 'src/app/interfaces/PageableResponseNfts';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,12 @@ export class NftService {
     return this.http.get<Nft>(`${this.apiUrl}/api/nft/${id}`);
   }
 
-  getAll(): Observable<Nft[]>{
-    return this.http.get<Nft[]>(`${this.apiUrl}/api/nft`);
+  getAll(): Observable<PageableResponseNfts>{
+    return this.http.get<PageableResponseNfts>(`${this.apiUrl}/api/nft`);
+  }
+
+  getAllPageable(valor: number): Observable<PageableResponseNfts>{
+    return this.http.get<PageableResponseNfts>(`${this.apiUrl}/api/nft`, {params: {'page': valor}});
   }
 
   post(nft: Nft, idUser: number): Observable<Nft>{

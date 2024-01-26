@@ -70,7 +70,7 @@ export class NftFormComponent {
     
     console.log('Upload: ', data);
     
-    const imgBlob = URL.createObjectURL(data.files![0]);
+    const imgBlob = URL.createObjectURL(data.currentFiles![0]);
 
     this.nftForm.patchValue({img_url: imgBlob});
 

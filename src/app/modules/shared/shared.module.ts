@@ -10,13 +10,15 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
 import { NftFormComponent } from './components/nft-form/nft-form.component';
 import { CardComponent } from './components/card/card.component';
+import { LimitenamePipe } from 'src/app/pipes/limitename.pipe';
 
 
 
 @NgModule({
   declarations: [
     NftFormComponent,
-    CardComponent
+    CardComponent,
+    LimitenamePipe
   ],
   imports: [
     CommonModule,

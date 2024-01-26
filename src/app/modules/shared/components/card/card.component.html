@@ -2,7 +2,7 @@
     <div class="img-area w-full" [ngClass]="imgFull ? 'h-15rem cursor-auto' : 'h-13rem'">
         <img [src]="nft.img_url" class="w-full h-full border-round-top-2xl" [ngStyle]="{objectFit: 'cover'}">
     </div>
-    <h1 class="text-2xl text-100 py-2 text-center">{{nft.name}}</h1>
+    <h1 class="text-2xl text-100 py-2 text-center" [ngStyle]="{wordBreak: 'break-all'}" [title]="nft.name">{{nft.name | limitename}}</h1>
     <p class="text-xl text-gray-50 pl-2 mb-1">Valor: {{nft.price | currency : 'BRL'}}</p>
     <p class="text-xl text-gray-50 pl-2 pb-2">Qtd: {{nft.qtd}} disponíveis</p>
     <p *ngIf="false">Postado em: {{nft?.date | date: 'd/MM/yy'}} às {{nft?.date | date : 'h:mm a'}}</p>

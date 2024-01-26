@@ -14,8 +14,11 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
+import { PaginatorModule } from 'primeng/paginator';
+
 import { CookieService } from 'ngx-cookie-service';
 import { SpinnerComponent } from './modules/shared/components/spinner/spinner.component';
+
 import { LoadingInterceptor } from './loading.interceptor';
 import { FirstletterPipe } from './pipes/firstletter.pipe';
 
@@ -38,6 +41,7 @@ import { FirstletterPipe } from './pipes/firstletter.pipe';
     ToastModule,
     AvatarModule,
     BadgeModule,
+    PaginatorModule,
     //Shared
     SharedModule,
   ],

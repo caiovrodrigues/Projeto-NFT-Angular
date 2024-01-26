@@ -1,10 +1,10 @@
 <div>
     <h1 class="text-color text-center pt-3">{{title}}</h1>
     <div class="grid gap-3 p-3">
-        <form [formGroup]="nftForm" #formDir="ngForm" (ngSubmit)="submit()" class="flex flex-column col gap-5">
+        <form [formGroup]="nftForm" #formDir="ngForm" (ngSubmit)="submit()" class="flex flex-column col gap-5 ">
             <div class="relative">
                 <span class="p-float-label">
-                    <input pInputText class="w-full" id="username" formControlName="name" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
+                    <input pInputText class="w-full" id="username" formControlName="name" maxlength="21" [ngClass]="qtd.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
                     <label htmlFor="username">Nome</label>
                 </span>
                 <div *ngIf="name.invalid && formDir.submitted" class="error">
@@ -40,7 +40,7 @@
             </div>
             <div>
                 <label class="block text-color mb-2">Escolha a melhor foto:</label>
-                <p-fileUpload mode="basic" chooseLabel="Upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" [maxFileSize]="1000000" (onUpload)="fileSelected($event)" [auto]="true"></p-fileUpload>
+                <p-fileUpload mode="advanced" chooseLabel="Upload" name="demo[]" accept="image/*" (onSelect)="fileSelected($event)" [maxFileSize]="1000000" (onUpload)="fileSelected($event)" [auto]="true"></p-fileUpload>
             </div>
     
             <div>
@@ -51,7 +51,7 @@
         <div class="col flex justify-content-center">
             <div>
                 <div class="img-area w-full"><img class="max-w-20rem h-20rem" [src]="nftForm.value.img_url ? nftForm.value.img_url : 'https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png'" [ngStyle]="{objectFit: 'cover'}"></div>
-                <h1 class="text-color text-2xl text-center">{{nftForm.value.name == '' ? 'Nome' : nftForm.value.name}}</h1>
+                <h1 class="text-color text-2xl text-center" [ngStyle]="{wordBreak: 'break-all'}">{{nftForm.value.name == '' ? 'Nome' : nftForm.value.name}}</h1>
                 <p class="price">Preço: {{nftForm.value.price | currency: 'BRL'}}</p>
                 <p class="qtd">Quantidade: {{nftForm.value.qtd}} disponíveis</p>
             </div>
