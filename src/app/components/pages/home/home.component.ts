@@ -1,5 +1,5 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject, takeUntil } from 'rxjs';
 import { PageableResponseNfts } from 'src/app/interfaces/PageableResponseNfts';
@@ -17,14 +17,27 @@ export class HomeComponent implements OnDestroy{
   nfts!: Nft[];
   pageableNfts!: PageableResponseNfts;
 
-  constructor(private nftService: NftService){}
+  pagina!: Params;
+
+  constructor(private nftService: NftService, private router: Router, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(){
-    this.fetchNfts();
+    console.log(this.activatedRoute);
+
+    this.activatedRoute.queryParams
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(value => {
+      this.pagina = value;
+      this.fetchNfts(value)
+      // console.log('queryParams emitiu um valor: ', Object.entries(value))
+    });
+
   }
 
-  fetchNfts(){
-    this.nftService.getAll()
+  fetchNfts(teste: Params){
+    console.log(teste);
+    
+    this.nftService.getAllPageable(teste)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {
@@ -38,21 +51,24 @@ export class HomeComponent implements OnDestroy{
   }
 
   onPageChange($event: PaginatorState) {
-    console.log($event);
     if($event.page == this.pageableNfts.pageable.pageNumber){
       return;
     }
-    this.nftService.getAllPageable($event.page!)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe({
-      next: (response) => {
-        this.nfts = response.content;
-        this.pageableNfts = response;
-      },
-      error: (error) => {
-        console.log("Deu algum erro", error);
-      }
-    });
+    this.router.navigate([''], {queryParams: {page: $event.page}});
+
+    // console.log(this.activatedRoute);
+    // this.fetchNfts(this.pagina);
+    // this.nftService.getAllPageable(this.pagina)
+    // .pipe(takeUntil(this.destroy$))
+    // .subscribe({
+    //   next: (response) => {
+    //     this.nfts = response.content;
+    //     this.pageableNfts = response;
+    //   },
+    //   error: (error) => {
+    //     console.log("Deu algum erro", error);
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {
