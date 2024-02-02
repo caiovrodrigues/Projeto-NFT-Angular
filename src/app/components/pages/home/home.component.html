@@ -2,7 +2,7 @@
     <div *ngIf="nfts.length > 0; else noNfts" class="flex flex-wrap justify-content-evenly bg-gray-50 mt-4 border-round-lg shadow-2 m-auto" [ngStyle]="{maxWidth: '1100px'}">    
         <app-card *ngFor="let nft of nfts" [nft]="nft"></app-card>
     </div>
-    <p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="9" [totalRecords]="pageableNfts.totalElements" ></p-paginator>
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="9" [totalRecords]="pageableNfts.totalElements" ></p-paginator>
 </div>
 
 <ng-template #noNfts>
