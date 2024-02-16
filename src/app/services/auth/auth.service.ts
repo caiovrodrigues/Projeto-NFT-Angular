@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import {  Observable } from 'rxjs';
 import { ResponseCadastroUsuario } from 'src/app/interfaces/ResponseCadastroUsuario';
 import { IsLoggedService } from '../isLogged/is-logged.service';
+import { RequestLogin } from 'src/app/interfaces/RequestLogin';
+import { RequestCadastro } from 'src/app/interfaces/RequestCadastro';
 
 @Injectable({
   providedIn: 'root'
@@ -17,33 +19,23 @@ export class AuthService {
 
   constructor(){}
 
-  cadastrar(value: Partial<{ email: string | null; username: string | null; senha: string | null; confirmaSenha: string | null; }>): Observable<ResponseCadastroUsuario> {
-    return this.http.post<ResponseCadastroUsuario>(`${this.apiUrl}/api/users/criar`, value);
+  cadastrar(value: RequestCadastro): Observable<ResponseCadastroUsuario> {
+    return this.http.post<ResponseCadastroUsuario>(`${this.apiUrl}/api/users/register`, value);
   }
 
-  logar(value: Partial<{ username: string | null; password: string | null; }>): Observable<{id: number, name: string}> {
-    return this.http.post<{id: number, name: string}>(`${this.apiUrl}/api/users/auth`, value);
+  logar(value: RequestLogin): Observable<{token: string}> {
+    return this.http.post<{token: string}>(`${this.apiUrl}/api/users/login`, value);
   }
 
   logout() {
-    let token = this.cookieService.check("token");
-    if(token){
-      this.cookieService.delete("token");
-      this.isLoggedService.setUserToken(null);
+    if(this.isLoggedService.checkHasToken()){
+      localStorage.removeItem("token");
+      this.isLoggedService.setUsuarioLogado(null);
     }
   }
 
   checkAuthorizationEdit(idNft: number): Observable<{logado: boolean}>{
-    let checkHasToken = this.isLoggedService.checkHasToken();
-
-    if(checkHasToken){
-      let { id } = this.isLoggedService.getUserFromToken();
-      return this.http.get<{logado: boolean}>(`${this.apiUrl}/api/nft/canedit/nft/${idNft}/usuario/${id}`);
-    }
-
-    return new Observable(subscribe => {
-      return subscribe.next({logado: false});
-    })
+    return this.http.get<{logado: boolean}>(`${this.apiUrl}/api/nft/${idNft}/canedit`);
   }
 
 }

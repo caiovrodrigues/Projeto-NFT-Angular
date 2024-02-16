@@ -1,51 +1,61 @@
-import { Injectable, inject } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { UserToken } from 'src/app/interfaces/UserToken';
+import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsLoggedService {
 
-  private cookieService = inject(CookieService);
-
   private isLogadoSubject = new BehaviorSubject<boolean>(false);
-  isLogadoSubject$ = this.isLogadoSubject.asObservable();
+  public isLogadoSubject$ = this.isLogadoSubject.asObservable();
 
-  userFromToken$ = new BehaviorSubject<UserToken | null>(null);
+  public idLogado = new BehaviorSubject<number | null>(null);
+  public idLogado$ = this.idLogado.asObservable();
 
-  constructor() { 
-    let hasToken = this.checkHasToken();
-    if(hasToken){
-      let userFromToken = this.getUserFromToken();
-      this.setUserToken(userFromToken);
-    }
-  }
+  public usernameLogado = new BehaviorSubject<string | null>(null);
+  public usernameLogado$ = this.usernameLogado.asObservable();
 
-  //Retorna um boolean se existe um token nos cookies
-  checkHasToken(){
-    return this.cookieService.check("token");
-  }
-
-  //Retorna o usuário parsed do cookie
-  getUserFromToken(): UserToken{
-    let token = this.cookieService.get("token");
-    let userFromToken = JSON.parse(token);
-    return userFromToken;
-  }
-
-  //Seta um usuário ao cookie e atualiza seus observables
-  setUserToken(userToken: UserToken | null){
-    if(userToken != null){
+  constructor() {
+    if(this.checkHasToken()){
+      let token = this.getToken();
+      let decodedToken = this.getTokenDecoded(token!);
       this.isLogadoSubject.next(true);
-      this.cookieService.set("token", JSON.stringify(userToken));
-      this.userFromToken$.next(userToken);
-      return;
+      this.idLogado.next(decodedToken!.id!);
+      this.usernameLogado.next(decodedToken!.sub!);
     }
-
-    this.isLogadoSubject.next(false);
-    this.userFromToken$.next(userToken);
-    this.cookieService.delete("token");
   }
+
+  setUsuarioLogado(token: string | null){
+    if(token){
+      let decodedToken = this.getTokenDecoded(token);
+      decodedToken ? this.idLogado.next(decodedToken.id!) : null;
+      this.isLogadoSubject.next(true);
+      this.usernameLogado.next(decodedToken!.sub!);
+    }else{
+      this.isLogadoSubject.next(false);
+      this.idLogado.next(null);
+      this.usernameLogado.next(null);
+    }
+  }
+
+  //Retorna um boolean se existe o token no local storage
+  checkHasToken(): boolean{
+    let hasToken = localStorage.getItem("token");
+    return hasToken ? true : false;
+  }
+
+  getToken(){
+    return localStorage.getItem("token");
+  }
+
+  removeCredentials(){
+    this.idLogado.next(null);
+  }
+
+  getTokenDecoded(token: string){
+    let decodedToken = jwtDecode(token);
+    return decodedToken ? decodedToken : null;
+  }
+
 }

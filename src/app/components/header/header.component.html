@@ -11,7 +11,7 @@
                 <i class="pi pi-bell text-4xl" pBadge value="2"></i>
             </li>
             <li *ngIf="logado" (click)="logout()">
-                <p-avatar [label]="userFromToken.name | firstletter | uppercase" styleClass="mr-2" size="large" shape="circle" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }"></p-avatar>
+                <p-avatar [label]="'A' | firstletter | uppercase" styleClass="mr-2" size="large" shape="circle" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }"></p-avatar>
             </li>
         </ul>
     </nav>

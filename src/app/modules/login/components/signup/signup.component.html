@@ -23,19 +23,19 @@
                 <div>
                     <div class="flex flex-wrap justify-content-center align-items-center gap-2">
                         <label class="w-8rem">Senha</label>
-                        <input pInputText formControlName="senha" type="password" class="w-12rem" [ngClass]="senha.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
+                        <input pInputText formControlName="password" type="password" class="w-12rem" [ngClass]="password.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
                     </div>
-                    <p *ngIf="senha.getError('required') && formDir.submitted" class="text-red-600 text-center my-1">Campo não pode ser vazio</p>
-                    <p *ngIf="senha.getError('minlength') && formDir.submitted" class="text-red-600 text-center my-1">Deve conter 6 letras, faltam {{6 - senha.getError('minlength').actualLength}}</p>
+                    <p *ngIf="password.getError('required') && formDir.submitted" class="text-red-600 text-center my-1">Campo não pode ser vazio</p>
+                    <p *ngIf="password.getError('minlength') && formDir.submitted" class="text-red-600 text-center my-1">Deve conter 6 letras, faltam {{6 - password.getError('minlength').actualLength}}</p>
                 </div>
 
                 <div>
                     <div class="flex flex-wrap justify-content-center align-items-center gap-2">
                         <label class="w-8rem">Confirma senha</label>
-                        <input pInputText formControlName="confirmaSenha" type="password" class="w-12rem" [ngClass]="confirmaSenha.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
+                        <input pInputText formControlName="confirmPassword" type="password" class="w-12rem" [ngClass]="confirmPassword.invalid && formDir.submitted ? 'ng-invalid ng-dirty' : ''"/>
                     </div>
-                    <p *ngIf="confirmaSenha.getError('required') && formDir.submitted" class="text-red-600 text-center my-1">Campo não pode ser vazio</p>
-                    <p *ngIf="confirmaSenha.getError('minlength') && formDir.submitted" class="text-red-600 text-center my-1">Deve conter 6 letras, faltam {{6 - confirmaSenha.getError('minlength').actualLength}}</p>
+                    <p *ngIf="confirmPassword.getError('required') && formDir.submitted" class="text-red-600 text-center my-1">Campo não pode ser vazio</p>
+                    <p *ngIf="confirmPassword.getError('minlength') && formDir.submitted" class="text-red-600 text-center my-1">Deve conter 6 letras, faltam {{6 - confirmPassword.getError('minlength').actualLength}}</p>
                 </div>
                 
                 <p-button label="Criar conta" severity="success" type="submit" icon="pi pi-user-plus" styleClass="w-10rem mx-auto"></p-button>

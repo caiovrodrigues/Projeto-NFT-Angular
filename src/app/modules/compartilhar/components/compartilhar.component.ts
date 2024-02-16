@@ -30,14 +30,14 @@ export class CompartilharComponent {
       return;
     }
 
-    let userFromToken = this.isLoggedService.getUserFromToken();
+    this.nftService.post(nft).subscribe({
+      next: (response) => console.log(response),
+      error: () => this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Algo de errado aconteceu, tente novamente'})
+    })
+  }
 
-    this.nftService.post(nft, userFromToken.id).subscribe({
-      next: () => {
-        this.messageService.add({severity: 'success', summary: 'Parabéns', detail: 'Seu novo NFT foi compartilhado!'})
-        this.router.navigate(['']);
-      },
-      error: () => this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao compartilhar seu nft'})
-    });
+  uploadImage(data: File){
+    console.log(data);
+    
   }
 }

@@ -4,7 +4,7 @@ import { NftService } from 'src/app/services/nft/nft.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ComentarioService } from 'src/app/services/comentario/comentario.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import Comentario from 'src/app/interfaces/iComentario';
 import { UserToken } from 'src/app/interfaces/UserToken';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
@@ -23,7 +23,8 @@ export class NftComponent implements OnDestroy{
   comments: Comentario[] = [];
 
   isOwner: boolean = false;
-  userLogado?: UserToken | null;
+  userLogadoId?: number | null;
+  usernameLogado?: string | null;
 
   private formBuilder = inject(FormBuilder);
   private comentarioService = inject(ComentarioService);
@@ -44,19 +45,13 @@ export class NftComponent implements OnDestroy{
     let hasToken = this.isLoggedService.checkHasToken();
 
     if(hasToken){
-      this.isLoggedService.userFromToken$.pipe(takeUntil(this.destroy$)).subscribe(value => {
-        this.userLogado = value;
-        if(value){
-          this.commentForm.patchValue({usuario: this.userLogado?.name});
-          this.commentForm.controls.usuario.disable();
-        }
-        if(value == null){
-          this.commentForm.reset();
-          this.commentForm.controls.usuario.enable();
-        }
+      this.isLoggedService.idLogado$.pipe(takeUntil(this.destroy$)).subscribe(value => this.userLogadoId = value);
+      this.isLoggedService.usernameLogado$.pipe(takeUntil(this.destroy$)).subscribe(value => {
+        this.commentForm.patchValue({usuario: value});
+        value ? this.commentForm.get("usuario")?.disable() : this.commentForm.get("usuario")?.enable();
       });
+
       this.isLoggedService.isLogadoSubject$.pipe(takeUntil(this.destroy$)).subscribe(value => !value ? this.isOwner = value : null);
-      
     }
 
     this.nftService.getNft(this.id)
@@ -65,22 +60,25 @@ export class NftComponent implements OnDestroy{
         next: (nft) => {
           this.nft = nft;
           if(hasToken){
-            let setIsOwner = nft.user.id === this.userLogado?.id ? true : false;
+            let setIsOwner = nft.user.id === this.userLogadoId ? true : false;
 
             this.isOwner = setIsOwner;
 
-            console.log('id do dono do nft: ', nft.user.id, '; id do usuário logado : ', this.userLogado?.id, '; resultado: ', setIsOwner);
+            console.log('id do dono do nft: ', nft.user.id, '; id do usuário logado : ', this.userLogadoId, '; resultado: ', setIsOwner);
           }
           
         },
         error: (error) => {
+          if(error.status == 403){
+            this.messageService.add({severity: 'info', summary: 'Atenção', detail: `Você precisar estar logado para ter acesso detalhado a este nft.`});
+            this.router.navigateByUrl("/auth");
+          }
           console.log('Algo deu errado', error);
         }
       });
 
     this.fetchComentarios();
   }
-
 
   get usuario(){
     return this.commentForm.get("usuario");
@@ -111,11 +109,11 @@ export class NftComponent implements OnDestroy{
   }
 
   submitComment(){
-    if(this.commentForm.valid && this.userLogado){
+    if(this.commentForm.valid && this.userLogadoId){
       const commentObj = {
         mensagem: this.commentForm.value.mensagem as string
       }
-      this.comentarioService.postComment(this.userLogado!.id, this.nft.id, commentObj).subscribe({
+      this.comentarioService.postComment(this.nft.id, commentObj).subscribe({
         next: () => {
           this.fetchComentarios();
           this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Comentário feito com sucesso'});
@@ -131,21 +129,21 @@ export class NftComponent implements OnDestroy{
   }
 
   deleteComment(id: number){
-    if(this.userLogado){
-      this.comentarioService.delete(id, this.userLogado.id).subscribe({
-        next: () => {
-          this.fetchComentarios();
-          this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Comentário excluído sucesso'});
-        },
-        error: () => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Houve algum erro ao deletar comentário'});
-        }
-      });
+    if(!this.userLogadoId){
+      this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Você precisa estar logado para excluir este comentário'});
+      this.router.navigate(['auth']);
       return;
     }
 
-    this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Você precisa estar logado para excluir este comentário'});
-    this.router.navigate(['auth']);
+    this.comentarioService.delete(id, this.userLogadoId).subscribe({
+      next: () => {
+        this.fetchComentarios();
+        this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Comentário excluído sucesso'});
+      },
+      error: () => {
+        this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Houve algum erro ao deletar comentário'});
+      }
+    });
   }
 
   ngOnDestroy(): void {

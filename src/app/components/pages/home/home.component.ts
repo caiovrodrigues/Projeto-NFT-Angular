@@ -1,5 +1,6 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject, takeUntil } from 'rxjs';
 import { PageableResponseNfts } from 'src/app/interfaces/PageableResponseNfts';
@@ -16,14 +17,13 @@ export class HomeComponent implements OnDestroy{
   destroy$ = new Subject<void>();
   nfts!: Nft[];
   pageableNfts!: PageableResponseNfts;
+  first: number = 0;
 
   pagina!: Params;
 
   constructor(private nftService: NftService, private router: Router, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(){
-    console.log(this.activatedRoute);
-
     this.activatedRoute.queryParams
     .pipe(takeUntil(this.destroy$))
     .subscribe(value => {
@@ -34,13 +34,15 @@ export class HomeComponent implements OnDestroy{
 
   }
 
-  fetchNfts(teste: Params){
-    console.log(teste);
+  fetchNfts(params: Params){
+    console.log(params);
     
-    this.nftService.getAllPageable(teste)
+    this.nftService.getAllPageable(params)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {
+        console.log('response', response);
+      
         this.nfts = response.content;
         this.pageableNfts = response;
       },
@@ -51,6 +53,11 @@ export class HomeComponent implements OnDestroy{
   }
 
   onPageChange($event: PaginatorState) {
+    this.first = $event.first!;
+    console.log($event);
+    console.log(this.activatedRoute);
+    
+    
     if($event.page == this.pageableNfts.pageable.pageNumber){
       return;
     }

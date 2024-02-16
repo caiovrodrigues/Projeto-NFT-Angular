@@ -15,17 +15,17 @@
         <div class="w-full">
             <h1 class="text-center text-color text-2xl">Comentários: ({{comments.length}})</h1>
             <div class="flex flex-column gap-3 mt-3" *ngIf="comments.length > 0">
-                <div class="flex justify-content-between" *ngFor="let comment of comments">
+                <div class="flex justify-content-between align-items-center hover:bg-gray-100" *ngFor="let comment of comments">
                     <div class="flex gap-3">
                         <div class="w-3rem h-3rem">
                             <img src="assets/foto-perfil-comentario.jfif" class="w-full h-full border-circle" [ngStyle]="{objectFit: 'cover'}">
                         </div>
-                        <div class="flex flex-column gap-1">
+                        <div class="flex-1 flex-column gap-1">
                             <div class="font-bold">{{comment.username| titlecase}} - <span class="font-normal font-italic text-sm text-600">{{comment.date| date: 'dd/MM/YYYY'}} às {{comment.date | date: 'HH:mm:ss'}}</span></div>
-                            <div>{{comment.message}}</div>
+                            <div style="word-break: break-all;">{{comment.message}}</div>
                         </div>
                     </div>
-                    <div *ngIf="userLogado && comment.userId == userLogado?.id">
+                    <div *ngIf="userLogadoId && comment.userId == userLogadoId">
                         <p-button icon="pi pi-trash" (onClick)="deleteComment(comment.id)" severity="danger" [rounded]="true" size="small" [outlined]="true" pTooltip="Excluir" tooltipPosition="right"></p-button>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
         
                     <div class="c-group">
                         <span class="p-float-label">
-                            <textarea class="w-full" rows="4" formControlName="mensagem" id="mensagem" pInputTextarea [autoResize]="true"></textarea>
+                            <textarea class="w-full" rows="4" formControlName="mensagem" id="mensagem" pInputTextarea [autoResize]="true" maxlength="255"></textarea>
                             <label for="mensagem">Comentário</label>
                         </span>
                         <div *ngIf="mensagem!.invalid && formDir.submitted">

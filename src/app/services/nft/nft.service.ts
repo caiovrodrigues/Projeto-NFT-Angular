@@ -5,14 +5,16 @@ import { Nft } from '../../interfaces/iNFT';
 import { Observable } from 'rxjs';
 import { PageableResponseNfts } from 'src/app/interfaces/PageableResponseNfts';
 import { Params } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NftService {
+  
   apiUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   getNft(id: number){
     return this.http.get<Nft>(`${this.apiUrl}/api/nft/${id}`);
@@ -26,8 +28,8 @@ export class NftService {
     return this.http.get<PageableResponseNfts>(`${this.apiUrl}/api/nft`, {params: page});
   }
 
-  post(nft: Nft, idUser: number): Observable<Nft>{
-    return this.http.post<Nft>(`${this.apiUrl}/api/nft/usuario/${idUser}`, nft);
+  post(nft: Nft): Observable<Nft>{
+    return this.http.post<Nft>(`${this.apiUrl}/api/nft`, nft);
   }
 
   put(nft: Nft, id: number): Observable<Nft>{

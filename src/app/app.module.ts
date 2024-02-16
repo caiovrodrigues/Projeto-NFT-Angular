@@ -21,6 +21,7 @@ import { SpinnerComponent } from './modules/shared/components/spinner/spinner.co
 
 import { LoadingInterceptor } from './loading.interceptor';
 import { FirstletterPipe } from './pipes/firstletter.pipe';
+import { TokenInjectHttpInterceptor } from './interceptors/TokenInjectHttpInterceptor';
 
 @NgModule({
   declarations: [
@@ -45,10 +46,12 @@ import { FirstletterPipe } from './pipes/firstletter.pipe';
     //Shared
     SharedModule,
   ],
-  providers: [MessageService, CookieService,
-  {
-    provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
-  }],
+  providers: [
+    MessageService,
+    CookieService,
+  { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: TokenInjectHttpInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

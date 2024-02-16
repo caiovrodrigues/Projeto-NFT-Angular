@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { FileSelectEvent } from 'primeng/fileupload';
 import { Nft } from 'src/app/interfaces/iNFT';
 
 @Component({
@@ -10,6 +11,7 @@ import { Nft } from 'src/app/interfaces/iNFT';
 })
 export class NftFormComponent {
   @Output() onSubmit = new EventEmitter();
+  @Output() uploadImage = new EventEmitter();
   
   @Input() btnText = '';
   @Input() title = '';
@@ -65,20 +67,16 @@ export class NftFormComponent {
     this.onSubmit.emit(this.nftForm.value);
   }
 
-  fileSelected(data:any){
-    console.log('Arquivo upado');
-    
-    console.log('Upload: ', data);
-    
-    const imgBlob = URL.createObjectURL(data.currentFiles![0]);
+  fileSelected(data: FileSelectEvent){
+    let path = "C:/Users/caiob/Documents/Ciência da Computação/Projeto - beNFT/Projeto-NFT-JavaSpring/assets/";
 
-    this.nftForm.patchValue({img_url: imgBlob});
+    const imgBlob = URL.createObjectURL(data.currentFiles[0]);
 
-    const imgModel = document.getElementById("imgModel") as HTMLImageElement;
-    imgModel.src = imgBlob;
-    console.log(imgBlob);
+    this.nftForm.patchValue({img_url: path + data.currentFiles[0].name});
 
-    console.log('Carregou uma imagem');
+    this.uploadImage.emit(data.currentFiles[0]);
+
+    console.log(data.currentFiles[0]);
 
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
+import { RequestLogin } from 'src/app/interfaces/RequestLogin';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 
@@ -15,7 +16,6 @@ export class LoginComponent {
 
   private authService = inject(AuthService);
   private isLoggedService = inject(IsLoggedService);
-  private cookieService = inject(CookieService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private messageService = inject(MessageService);
@@ -40,22 +40,20 @@ export class LoginComponent {
       this.password.markAsDirty();
       return;
     }
-
-    this.authService.logar(this.loginForm.value)
+    
+    this.authService.logar(this.loginForm.value as RequestLogin)
     .subscribe({
       next: (response) => {
         console.log("Deu certo: ", response);
         this.router.navigate(['']);
         this.messageService.add({severity: 'success', summary: 'Autenticado', detail: 'Login realizado com sucesso!'});
-        
-        this.isLoggedService.setUserToken(response);
+        localStorage.setItem("token", response.token);
 
-        console.log("token do cookie: ", JSON.parse(this.cookieService.get("token")));
+        this.isLoggedService.setUsuarioLogado(response.token);
         
       },
       error: (err) => {
         this.messageService.add({severity: 'error', summary: 'Houve um erro', detail: err.error.message});
-        console.log(err);
       }
     });
   }

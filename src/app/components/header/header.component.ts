@@ -3,6 +3,7 @@ import { UserToken } from 'src/app/interfaces/UserToken';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,14 +16,10 @@ export class HeaderComponent implements OnInit{
 
   logado!: boolean;
   userFromToken!: UserToken;
+  
 
   ngOnInit(): void {
     this.isLoggedService.isLogadoSubject$.subscribe(value => this.logado = value);
-    this.isLoggedService.userFromToken$.subscribe(value => {
-      if(value){
-        this.userFromToken = value;
-      }
-    });
   }
 
   logout(){
