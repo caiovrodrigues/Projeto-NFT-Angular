@@ -39,6 +39,9 @@ export class HomeComponent implements OnDestroy{
       next: (response) => {
         this.nfts = response.content;
         this.pageableNfts = response;
+        this.first = response.pageable.offset;
+        console.log('pageableNfTS:', this.pageableNfts);
+        
       },
       error: (error) => {
         console.log("Deu algum erro", error);

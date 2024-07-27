@@ -6,6 +6,7 @@ export interface PageableResponseNfts{
     ],
     pageable: {
         pageNumber: number;
+        offset: number;
     }
     totalElements: number;
     totalPages: number;
