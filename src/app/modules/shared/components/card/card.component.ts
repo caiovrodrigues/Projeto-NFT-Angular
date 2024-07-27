@@ -7,7 +7,13 @@ import { Nft } from 'src/app/interfaces/iNFT';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-  @Input() nft?: Nft;
+  urlBaseMinio = "http://localhost:9000/nft"
+  @Input({required: true}) nft?: Nft;
   @Input() imgFull: boolean = false;
+
+  ngOnInit(){
+    console.log(this.nft);
+    
+  }
 
 }

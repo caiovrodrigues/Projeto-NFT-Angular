@@ -1,6 +1,6 @@
 <div *ngIf="nft" class="relative w-17rem border-round-2xl m-3 bg-black-alpha-40 transition-duration-400" [ngClass]="!imgFull ? 'card cursor-pointer' : 'cursor-auto'" routerLink="nft/{{nft.id}}">
     <div class="img-area w-full" [ngClass]="imgFull ? 'h-15rem cursor-auto' : 'h-13rem'">
-        <img [src]="nft.img_url" class="w-full h-full border-round-top-2xl" [ngStyle]="{objectFit: 'cover'}">
+        <img [src]="nft.urlMinio ? urlBaseMinio + nft.urlMinio : urlBaseMinio + '/default.png'" class="w-full h-full border-round-top-2xl" [ngStyle]="{objectFit: 'cover'}">
     </div>
     <h1 class="text-2xl text-100 py-2 text-center" [ngStyle]="{wordBreak: 'break-all'}" [title]="nft.name">{{nft.name | limitename}}</h1>
     <p class="text-xl text-gray-50 pl-2 mb-1">Valor: {{nft.price | currency : 'BRL'}}</p>

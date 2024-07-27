@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { RequestLogin } from 'src/app/interfaces/RequestLogin';
 import { AuthService } from 'src/app/services/auth/auth.service';

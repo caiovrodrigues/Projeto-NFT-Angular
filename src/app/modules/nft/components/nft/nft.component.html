@@ -8,6 +8,8 @@
         <p-button icon="pi pi-pencil" [routerLink]="['editar']" severity="warning" pTooltip="Editar" tooltipPosition="left"></p-button>
         <p-button icon="pi pi-trash" (onClick)="deleteNft(nft)" severity="danger" pTooltip="Excluir" tooltipPosition="right"></p-button>
     </div>
+    
+    <p-button icon="pi pi-trash" (onClick)="gerarRelatorio(nft.user.id)" severity="primary" pTooltip="Gerar relatório" tooltipPosition="right"></p-button>
 
     <div [ngStyle]="{maxWidth: '700px', width: '100%'}">
         <p class="text-color text-xl text-center">{{nft.description}}</p>

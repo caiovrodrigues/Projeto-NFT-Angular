@@ -11,6 +11,9 @@ export const editGuard: CanActivateFn = (route, state) => {
   const messageService = inject(MessageService);
   const authService = inject(AuthService);
 
+  console.log(state);
+  
+
   return new Observable(subscribe => {
     authService.checkAuthorizationEdit(idNft).subscribe({
       next: (response) => {
@@ -24,6 +27,10 @@ export const editGuard: CanActivateFn = (route, state) => {
       },
       error: (response) => {
         console.log(response);
+        if(response.status === 403){
+          router.navigate([state.url.substring(0, 6)]);
+          messageService.add({severity: "warn", summary: "Erro ao acessar rota de edição", detail: "Você não é dono do nft que está tentando editar"});
+        }
         subscribe.next(false);
       }
     })

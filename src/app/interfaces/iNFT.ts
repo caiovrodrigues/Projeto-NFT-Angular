@@ -9,5 +9,5 @@ export interface Nft{
   description: string;
   price: number;
   qtd: number;
-  img_url?: string;
+  urlMinio?: string;
 }

@@ -4,7 +4,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { canAccessAuthGuard } from './guards/can-access-auth.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: HomeComponent },
   { 
     path: 'compartilhar',

@@ -1,8 +1,7 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { PaginatorState } from 'primeng/paginator';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, fromEvent, takeUntil } from 'rxjs';
 import { PageableResponseNfts } from 'src/app/interfaces/PageableResponseNfts';
 import { Nft } from 'src/app/interfaces/iNFT';
 import { NftService } from 'src/app/services/nft/nft.service';
@@ -28,21 +27,16 @@ export class HomeComponent implements OnDestroy{
     .pipe(takeUntil(this.destroy$))
     .subscribe(value => {
       this.pagina = value;
-      this.fetchNfts(value)
-      // console.log('queryParams emitiu um valor: ', Object.entries(value))
+      this.fetchNfts(value);
+      console.log('queryParams emitiu um valor: ', Object.entries(value))
     });
-
   }
 
   fetchNfts(params: Params){
-    console.log(params);
-    
     this.nftService.getAllPageable(params)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {
-        console.log('response', response);
-      
         this.nfts = response.content;
         this.pageableNfts = response;
       },

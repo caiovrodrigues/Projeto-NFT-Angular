@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Nft } from 'src/app/interfaces/iNFT';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
@@ -31,13 +31,12 @@ export class CompartilharComponent {
     }
 
     this.nftService.post(nft).subscribe({
-      next: (response) => console.log(response),
+      next: (response) => {
+        console.log(response);
+        this.router.navigate(['nft', response.id]);        
+        this.messageService.add({severity: 'success', summary: 'Parabéns', detail: `Seu NFT '${response.name}' foi compartilhado com sucesso`});
+      },
       error: () => this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Algo de errado aconteceu, tente novamente'})
     })
-  }
-
-  uploadImage(data: File){
-    console.log(data);
-    
   }
 }

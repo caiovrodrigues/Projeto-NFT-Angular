@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import {  Observable } from 'rxjs';
 import { ResponseCadastroUsuario } from 'src/app/interfaces/ResponseCadastroUsuario';
 import { IsLoggedService } from '../isLogged/is-logged.service';
@@ -14,7 +13,6 @@ export class AuthService {
   
   private apiUrl = 'http://localhost:8080';
   private http = inject(HttpClient);
-  private cookieService = inject(CookieService);
   private isLoggedService = inject(IsLoggedService);
 
   constructor(){}

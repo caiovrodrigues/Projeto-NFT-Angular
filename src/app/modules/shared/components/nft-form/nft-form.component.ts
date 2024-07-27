@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { FileSelectEvent } from 'primeng/fileupload';
 import { Nft } from 'src/app/interfaces/iNFT';
 
 @Component({
@@ -19,6 +18,7 @@ export class NftFormComponent {
   @Input() nftEdit?: Nft;
 
   nftForm!: FormGroup;
+  urlUploadMinio = "http://localhost:8080/api/nft/id/upload-picture";
 
   isAddMode!: boolean;
 
@@ -30,7 +30,8 @@ export class NftFormComponent {
       description: new FormControl(''),
       price: new FormControl(null, Validators.required),
       qtd: new FormControl(null, Validators.required),
-      img_url: new FormControl(this.nftEdit?.img_url)
+      img_url: new FormControl(this.nftEdit?.urlMinio),
+      upload: new FormControl('')
     })
 
     if(this.isAddMode == true){
@@ -38,7 +39,9 @@ export class NftFormComponent {
       this.nftForm.patchValue({description: this.nftEdit?.description});
       this.nftForm.patchValue({price: this.nftEdit?.price});
       this.nftForm.patchValue({qtd: this.nftEdit?.qtd});
-      this.nftForm.patchValue({img_url: this.nftEdit?.img_url});
+      this.nftForm.patchValue({img_url: this.nftEdit?.urlMinio});
+      this.urlUploadMinio = this.urlUploadMinio.replace("id", `${this.nftEdit?.id}`);
+      console.log("url para upload de imagem do nft atual: ", this.urlUploadMinio);
     }
   }
 
@@ -67,16 +70,9 @@ export class NftFormComponent {
     this.onSubmit.emit(this.nftForm.value);
   }
 
-  fileSelected(data: FileSelectEvent){
-    let path = "C:/Users/caiob/Documents/Ciência da Computação/Projeto - beNFT/Projeto-NFT-JavaSpring/assets/";
-
-    const imgBlob = URL.createObjectURL(data.currentFiles[0]);
-
-    this.nftForm.patchValue({img_url: path + data.currentFiles[0].name});
-
-    this.uploadImage.emit(data.currentFiles[0]);
-
-    console.log(data.currentFiles[0]);
-
+  fileSelected(data: File){
+    console.log(data);
+    let blob = URL.createObjectURL(data);
+    this.nftForm.patchValue({img_url: blob});
   }
 }

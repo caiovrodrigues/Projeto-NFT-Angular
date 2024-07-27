@@ -16,7 +16,6 @@ import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { PaginatorModule } from 'primeng/paginator';
 
-import { CookieService } from 'ngx-cookie-service';
 import { SpinnerComponent } from './modules/shared/components/spinner/spinner.component';
 
 import { LoadingInterceptor } from './loading.interceptor';
@@ -48,7 +47,6 @@ import { TokenInjectHttpInterceptor } from './interceptors/TokenInjectHttpInterc
   ],
   providers: [
     MessageService,
-    CookieService,
   { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: TokenInjectHttpInterceptor, multi: true }
   ],

@@ -4,9 +4,8 @@ import { NftService } from 'src/app/services/nft/nft.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ComentarioService } from 'src/app/services/comentario/comentario.service';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import Comentario from 'src/app/interfaces/iComentario';
-import { UserToken } from 'src/app/interfaces/UserToken';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 import { MessageService } from 'primeng/api';
 
@@ -144,6 +143,10 @@ export class NftComponent implements OnDestroy{
         this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Houve algum erro ao deletar comentário'});
       }
     });
+  }
+
+  gerarRelatorio(user_id: number){
+    this.nftService.gerarRelatorio(user_id).subscribe();
   }
 
   ngOnDestroy(): void {
