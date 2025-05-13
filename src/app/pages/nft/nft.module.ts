@@ -11,7 +11,6 @@ import { NFT_ROUTES } from './nft.routing';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [NftComponent, NftEditComponent],
@@ -25,7 +24,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ButtonModule,
     TooltipModule,
     InputTextModule,
-    InputTextareaModule,
     //Shared
     SharedModule
   ]

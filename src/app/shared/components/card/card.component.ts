@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Nft } from 'src/app/model/iNFT';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+    selector: 'app-card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.css'],
+    standalone: false
 })
 export class CardComponent {
   urlBaseMinio = "http://localhost:9000/nft"

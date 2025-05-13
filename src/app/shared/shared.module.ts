@@ -1,17 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
-import { NftFormComponent } from './components/nft-form/nft-form.component';
-import { CardComponent } from './components/card/card.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { TextareaModule } from 'primeng/textarea';
 import { LimitenamePipe } from 'src/app/pipes/limitename.pipe';
-
+import { CardComponent } from './components/card/card.component';
+import { NftFormComponent } from './components/nft-form/nft-form.component';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -26,11 +24,12 @@ import { LimitenamePipe } from 'src/app/pipes/limitename.pipe';
     ReactiveFormsModule,
     RouterModule,
     //PrimeNG
+    ButtonModule,
     InputTextModule,
-    InputTextareaModule,
     InputNumberModule,
-    FileUploadModule
+    FileUploadModule,
+    TextareaModule
   ],
-  exports: [NftFormComponent, CardComponent]
+  exports: [NftFormComponent, CardComponent, TextareaModule]
 })
 export class SharedModule { }

@@ -9,9 +9,10 @@ import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 import { NftService } from 'src/app/services/nft/nft.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css'],
+    standalone: false
 })
 export class HomeComponent implements OnDestroy{
 

@@ -5,9 +5,10 @@ import { Nft } from 'src/app/model/iNFT';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-nft-edit',
-  templateUrl: './nft-edit.component.html',
-  styleUrls: ['./nft-edit.component.css']
+    selector: 'app-nft-edit',
+    templateUrl: './nft-edit.component.html',
+    styleUrls: ['./nft-edit.component.css'],
+    standalone: false
 })
 export class NftEditComponent {
   title = 'Edite seu NFT';

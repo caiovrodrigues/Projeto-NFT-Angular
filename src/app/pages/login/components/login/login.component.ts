@@ -7,9 +7,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: false
 })
 export class LoginComponent {
 

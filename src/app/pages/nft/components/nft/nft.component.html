@@ -5,7 +5,7 @@
     </div>
     
     <div class="flex gap-2 mt-2" *ngIf="isOwner">
-        <p-button icon="pi pi-pencil" [routerLink]="['editar']" severity="warning" pTooltip="Editar" tooltipPosition="left"></p-button>
+        <p-button icon="pi pi-pencil" [routerLink]="['editar']" severity="warn" pTooltip="Editar" tooltipPosition="left"></p-button>
         <p-button icon="pi pi-trash" (onClick)="deleteNft(nft)" severity="danger" pTooltip="Excluir" tooltipPosition="right"></p-button>
     </div>
     

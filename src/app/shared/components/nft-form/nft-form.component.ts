@@ -4,9 +4,10 @@ import { Validators } from '@angular/forms';
 import { Nft } from 'src/app/model/iNFT';
 
 @Component({
-  selector: 'app-nft-form',
-  templateUrl: './nft-form.component.html',
-  styleUrls: ['./nft-form.component.css']
+    selector: 'app-nft-form',
+    templateUrl: './nft-form.component.html',
+    styleUrls: ['./nft-form.component.css'],
+    standalone: false
 })
 export class NftFormComponent {
   @Output() onSubmit = new EventEmitter();

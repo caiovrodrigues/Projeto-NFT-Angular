@@ -10,9 +10,10 @@ import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-nft',
-  templateUrl: './nft.component.html',
-  styleUrls: ['./nft.component.css']
+    selector: 'app-nft',
+    templateUrl: './nft.component.html',
+    styleUrls: ['./nft.component.css'],
+    standalone: false
 })
 export class NftComponent implements OnDestroy{
 

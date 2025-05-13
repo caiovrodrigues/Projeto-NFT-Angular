@@ -21,6 +21,9 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { LoadingInterceptor } from './loading.interceptor';
 import { FirstletterPipe } from './pipes/firstletter.pipe';
 import { TokenInjectHttpInterceptor } from './interceptors/TokenInjectHttpInterceptor';
+import { providePrimeNG } from 'primeng/config';
+
+import Aura from '@primeng/themes/aura';
 
 @NgModule({
     declarations: [
@@ -48,6 +51,11 @@ import { TokenInjectHttpInterceptor } from './interceptors/TokenInjectHttpInterc
         MessageService,
         { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: TokenInjectHttpInterceptor, multi: true },
+        providePrimeNG({
+            theme: {
+                preset: Aura
+            }
+        }),
         provideHttpClient(withInterceptorsFromDi())
     ],
     bootstrap: [AppComponent]

@@ -7,9 +7,10 @@ import { NftService } from 'src/app/services/nft/nft.service';
 
 
 @Component({
-  selector: 'app-compartilhar',
-  templateUrl: './compartilhar.component.html',
-  styleUrls: ['./compartilhar.component.css']
+    selector: 'app-compartilhar',
+    templateUrl: './compartilhar.component.html',
+    styleUrls: ['./compartilhar.component.css'],
+    standalone: false
 })
 export class CompartilharComponent {
   title = 'Crie seu NFT';

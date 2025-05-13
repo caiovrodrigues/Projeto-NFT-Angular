@@ -1,17 +1,18 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { PrimeNG } from 'primeng/config';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
   
-  private primengConfig = inject(PrimeNGConfig);
+  private primeng = inject(PrimeNG);
 
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
+    this.primeng.ripple.set(true);
   }
 
 }
