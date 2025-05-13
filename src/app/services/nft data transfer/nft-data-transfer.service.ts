@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, take } from 'rxjs';
-import { Nft } from 'src/app/interfaces/iNFT';
+import { Nft } from 'src/app/model/iNFT';
 import { NftService } from '../nft/nft.service';
 
 @Injectable({

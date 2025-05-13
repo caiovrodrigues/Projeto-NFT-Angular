@@ -1,11 +1,11 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { Nft } from 'src/app/interfaces/iNFT';
+import { Nft } from 'src/app/model/iNFT';
 import { NftService } from 'src/app/services/nft/nft.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ComentarioService } from 'src/app/services/comentario/comentario.service';
 import { Subject, takeUntil } from 'rxjs';
-import Comentario from 'src/app/interfaces/iComentario';
+import Comentario from 'src/app/model/iComentario';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 import { MessageService } from 'primeng/api';
 

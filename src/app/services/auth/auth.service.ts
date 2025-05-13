@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import {  Observable } from 'rxjs';
-import { ResponseCadastroUsuario } from 'src/app/interfaces/ResponseCadastroUsuario';
+import { ResponseCadastroUsuario } from 'src/app/model/ResponseCadastroUsuario';
 import { IsLoggedService } from '../isLogged/is-logged.service';
-import { RequestLogin } from 'src/app/interfaces/RequestLogin';
-import { RequestCadastro } from 'src/app/interfaces/RequestCadastro';
+import { RequestLogin } from 'src/app/model/RequestLogin';
+import { RequestCadastro } from 'src/app/model/RequestCadastro';
 
 @Injectable({
   providedIn: 'root'

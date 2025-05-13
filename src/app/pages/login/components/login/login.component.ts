@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { RequestLogin } from 'src/app/interfaces/RequestLogin';
+import { RequestLogin } from 'src/app/model/RequestLogin';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 

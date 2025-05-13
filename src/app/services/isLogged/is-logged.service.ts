@@ -1,7 +1,7 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
-import { UserLogadoInfo } from 'src/app/interfaces/UserLogadoInfo';
+import { UserLogadoInfo } from 'src/app/model/UserLogadoInfo';
 
 @Injectable({
   providedIn: 'root'

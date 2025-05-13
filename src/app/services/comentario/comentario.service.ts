@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import Comentario from '../../interfaces/iComentario'
+import Comentario from '../../model/iComentario'
 import { Observable } from 'rxjs'
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Nft } from 'src/app/interfaces/iNFT';
+import { Nft } from 'src/app/model/iNFT';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 import { NftService } from 'src/app/services/nft/nft.service';
 

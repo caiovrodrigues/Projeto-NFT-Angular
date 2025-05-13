@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Nft } from 'src/app/interfaces/iNFT';
+import { Nft } from 'src/app/model/iNFT';
 
 @Component({
   selector: 'app-card',

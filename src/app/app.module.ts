@@ -9,14 +9,14 @@ import { HomeComponent } from './components/pages/home/home.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { SharedModule } from './modules/shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { PaginatorModule } from 'primeng/paginator';
 
-import { SpinnerComponent } from './modules/shared/components/spinner/spinner.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 import { LoadingInterceptor } from './loading.interceptor';
 import { FirstletterPipe } from './pipes/firstletter.pipe';

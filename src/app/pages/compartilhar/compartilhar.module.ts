@@ -4,7 +4,7 @@ import { CompartilharComponent } from './components/compartilhar.component';
 import { RouterModule } from '@angular/router';
 
 import { COMPARTILHAR_ROUTES } from './compartilhar.routing';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [CompartilharComponent],

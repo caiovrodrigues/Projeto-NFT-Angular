@@ -8,16 +8,16 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { 
     path: 'compartilhar',
-    loadChildren: () => import('src/app/modules/compartilhar/compartilhar.module').then(m => m.CompartilharModule),
+    loadChildren: () => import('src/app/pages/compartilhar/compartilhar.module').then(m => m.CompartilharModule),
     canActivate: [authGuard],
   },
   {
     path: 'nft/:id', 
-    loadChildren: () => import('src/app/modules/nft/nft.module')
+    loadChildren: () => import('src/app/pages/nft/nft.module')
   },
   {
     path: 'auth',
-    loadChildren: () => import('src/app/modules/login/login.module').then(modules => modules.LoginModule),
+    loadChildren: () => import('src/app/pages/login/login.module').then(modules => modules.LoginModule),
     canActivate: [canAccessAuthGuard]
   }
 ];

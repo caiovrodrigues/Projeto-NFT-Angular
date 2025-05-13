@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UserToken } from 'src/app/interfaces/UserToken';
+import { UserToken } from 'src/app/model/UserToken';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IsLoggedService } from 'src/app/services/isLogged/is-logged.service';
 

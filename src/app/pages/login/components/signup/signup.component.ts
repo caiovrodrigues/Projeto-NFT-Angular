@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { RequestCadastro } from 'src/app/interfaces/RequestCadastro';
+import { RequestCadastro } from 'src/app/model/RequestCadastro';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({

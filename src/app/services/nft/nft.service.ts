@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Nft } from '../../interfaces/iNFT';
+import { Nft } from '../../model/iNFT';
 import { Observable } from 'rxjs';
-import { PageableResponseNfts } from 'src/app/interfaces/PageableResponseNfts';
+import { PageableResponseNfts } from 'src/app/model/PageableResponseNfts';
 import { Params } from '@angular/router';
 
 @Injectable({
