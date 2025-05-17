@@ -15,4 +15,9 @@ export class AppComponent implements OnInit {
     this.primeng.ripple.set(true);
   }
 
+  toggleDarkMode(){
+    const html = document.querySelector("html");
+    html?.classList.toggle("my-app-dark");
+  }
+
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule,  } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,9 +52,13 @@ import Aura from '@primeng/themes/aura';
         MessageService,
         { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: TokenInjectHttpInterceptor, multi: true },
+        provideAnimationsAsync(),
         providePrimeNG({
             theme: {
-                preset: Aura
+                preset: Aura,
+                options: {
+                    darkModeSelector: '.my-app-dark'
+                }
             }
         }),
         provideHttpClient(withInterceptorsFromDi())
