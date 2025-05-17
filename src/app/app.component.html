@@ -1,5 +1,5 @@
-<app-header></app-header>
-<button (click)="toggleDarkMode()">Toggle DarkMode</button>
+<app-header/>
 <router-outlet></router-outlet>
+<p-toggleswitch [(ngModel)]="checked" (ngModelChange)="toggleDarkMode()"[dt]="amberSwitch"/>
 <app-spinner></app-spinner>
 <p-toast></p-toast>

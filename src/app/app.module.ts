@@ -5,12 +5,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/pages/home/home.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
@@ -25,29 +24,36 @@ import { TokenInjectHttpInterceptor } from './interceptors/TokenInjectHttpInterc
 import { providePrimeNG } from 'primeng/config';
 
 import Aura from '@primeng/themes/aura';
+import Material from '@primeng/themes/material';
+import { HomeComponent } from './pages/home/home.component';
+import { ButtonModule } from 'primeng/button';
+import { HeaderComponent } from "./components/header/header.component";
 
 @NgModule({
     declarations: [
         AppComponent,
-        HeaderComponent,
-        HomeComponent,
         SpinnerComponent,
         FirstletterPipe
     ],
     imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        //PRIME NG
-        ToastModule,
-        AvatarModule,
-        BadgeModule,
-        PaginatorModule,
-        //Shared
-        SharedModule
-    ],
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    //Components
+    HomeComponent,
+    //PRIME NG
+    ToastModule,
+    AvatarModule,
+    BadgeModule,
+    PaginatorModule,
+    ToggleSwitchModule,
+    ButtonModule,
+    //Shared
+    SharedModule,
+    HeaderComponent
+],
     providers: [
         MessageService,
         { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },

@@ -1,18 +1,45 @@
-<header class="flex justify-content-between align-items-center px-6 surface-50 border-bottom-1 surface-border shadow-1">
-    <div class="cursor-pointer" routerLink="">
-        <h1 class="text-5xl text-blue-500">beNFT</h1>
+<img src="assets/lights.png" class="absolute top-0 left-1/2 w-[1920px] h-[800px] -translate-x-1/2 z-8 object-cover opacity-40 pointer-events-none"/>
+
+<div style="width: calc(100% - 2.5rem);" class="fixed z-10 top-6 left-1/2 -translate-x-1/2 flex justify-between gap-4 items-center px-1 py-1 bg-zinc-900/100 not-dark:bg-white shadow-sm shadow-zinc-800 not-dark:shadow-zinc-200 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10">
+    <div class="flex gap-2 items-center">
+        <img src="assets/logo.jpg" class="w-8.5 rounded-2xl object-cover" />
+        <h1 class="text-xl font-medium">BENFT</h1>
     </div>
-    <nav>
-        <ul class="flex list-none align-items-center">
-            <li><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="" routerLinkActive="exact_route" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-            <li><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="/compartilhar" routerLinkActive="exact_route">Compartilhar</a></li>
-            <li *ngIf="!logado"><a class="block px-4 py-5 no-underline text-color border-bottom-1 border-transparent hover:border-blue-500" routerLink="/auth" routerLinkActive="exact_route">Login</a></li>
-            <li *ngIf="logado" class="mr-3">
-                <i class="pi pi-bell text-4xl" pBadge value="2"></i>
-            </li>
-            <li *ngIf="logado" (click)="logout()">
-                <p-avatar [label]="'A' | firstletter | uppercase" styleClass="mr-2" size="large" shape="circle" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }"></p-avatar>
-            </li>
-        </ul>
-    </nav>
-</header>
+
+    <div class="flex justify-end items-center gap-2.5 flex-1">
+        <button class="flex flex-1 order-1 max-w-36 h-8.5 font-bold justify-center text-sm items-center rounded-xl border-1 border-zinc-600 not-dark:border-zinc-200 gap-1 p-1 bg-[#19242b] not-dark:bg-white text-gray-200 not-dark:text-gray-700">
+            <svg
+                viewBox="0 0 256 262"
+                preserveAspectRatio="xMidYMid"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4"
+            >
+                <path
+                d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
+                fill="#4285F4"
+                ></path>
+                <path
+                d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
+                fill="#34A853"
+                ></path>
+                <path
+                d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
+                fill="#FBBC05"
+                ></path>
+                <path
+                d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
+                fill="#EB4335"
+                ></path>
+            </svg>
+            <span class="max-[394px]:hidden">Entre&nbsp;com&nbsp;Google</span>
+            <span class="min-[393px]:hidden">Google</span>
+        </button>
+
+        <img src="assets/logo.jpg" class="w-8.5 order-2 rounded-2xl border-1 p-1 border-zinc-500 not-dark:border-zinc-200" />
+
+        <div class="border-1 p-2 order-3 rounded-lg text-zinc-800 not-dark:border-zinc-200">
+            <i class="pi pi-bars text-zinc-500 not-dark:border-zinc-200"></i>
+        </div>
+    </div>
+    
+</div>

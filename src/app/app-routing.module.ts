@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/pages/home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { canAccessAuthGuard } from './guards/can-access-auth.guard';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { 
+  {
     path: 'compartilhar',
     loadChildren: () => import('src/app/pages/compartilhar/compartilhar.module').then(m => m.CompartilharModule),
     canActivate: [authGuard],
