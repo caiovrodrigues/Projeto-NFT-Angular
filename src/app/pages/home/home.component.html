@@ -1,4 +1,28 @@
-<div class="h-dvh border-1 bg-zinc-900 border-zinc-800 not-dark:bg-white not-dark:border-zinc-200 m-3 rounded-2xl ">
-
+<div id="hero-wrapper" class="h-dvh border-1 bg-zinc-900 border-zinc-800 not-dark:bg-white not-dark:border-zinc-200 m-3 rounded-2xl ">
+    <div class="hero-background">
+        <!-- <div class="hero-background-circle-lights"> -->
+            <!-- <img decoding="async" src="/assets/dots.png" style="opacity: 1; transform: translate(59.1927px, 10.2032px);"> -->
+            <!-- <img alt="Hero background circle lights" decoding="async" src="/assets/dots-2.png" style="opacity: 1; transform: translate(288.337px, 30.6695px);"> -->
+        <!-- </div> -->
+        <div style="--background-image:url(/assets/dots.png)" class="hero-background-dots">
+            <div style="--mask-image:url(/assets/dots-2.png)" class="hero-background-dots-fill pointer-events-none">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div style="position: absolute; left: 50%; transform: translate(-50%);top: 15%;display:flex; justify-content:center; text-align: center; z-index:9;">
+        <h1 class="section-header-title section-header-title-h1" q:key="TG_2">
+            <div class="section-header-title-desktop">
+                <span>Dimension is the new</span>
+                <span><b>standard for collaboration</b></span>
+            </div>
+        </h1>
+    </div>
+    <div class="absolute top-1/2 left-1/2 -translate-1/2 hero-img-wrapper flex">
+        <img src="assets/robot-hero.gif" class="pointer-events-none opacity-100" />
+        <!-- <img src="assets/robot-hero.gif" class="pointer-events-none opacity-100" />
+        <img src="assets/robot-hero.gif" class="pointer-events-none opacity-100" /> -->
+    </div>
 </div>
 <p-button label="Submit" />

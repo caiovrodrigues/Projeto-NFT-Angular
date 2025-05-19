@@ -14,6 +14,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.primeng.ripple.set(true);
+    if(this.checked){
+        const html = document.querySelector("html");
+        html?.classList.toggle("my-app-dark");
+    }
   }
 
   toggleDarkMode(){
